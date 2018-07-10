@@ -4,6 +4,7 @@
 #include <stdio.h>
 void inicializa();
 void imprimir();
+void direita();
 
 int x = 0, y = 0;//Coordenadas da matriz
 char mat[10][10];//Criação da matriz
@@ -18,7 +19,7 @@ int main(void) {
 		switch(tecla){
 		    case 97: //Movimentar para esquerda
 		        break;
-		    case 100: //Movimentar para direita
+		    case 100: direita();//Movimentar para direita
 		        break;
 			case 113: //Para encerrar o jogo
 		      	
@@ -54,4 +55,15 @@ void imprimir(){//Função que imprime a matriz completa
         }
         printf("|\n");
     }
+}
+
+void direita(){//Função que move o '*' para a direita
+    char aux;
+    int a = x, b = y+1;
+	if(b>=0 && b<=3) { //Adicionando limite para a extremidade direita
+	    aux = mat[x][y];
+	    mat[x][y] = mat[x][y+1];
+	    mat[x][y+1] = aux;
+	    y +=1;
+	}
 }
