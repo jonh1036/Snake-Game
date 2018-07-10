@@ -2,6 +2,7 @@
 //  Copyright © 2018 Jonathan. All rights reserved.
 
 #include <stdio.h>
+void inicializa();
 
 int x = 0, y = 0;//Coordenadas da matriz
 char mat[10][10];//Criação da matriz
@@ -9,6 +10,7 @@ char mat[10][10];//Criação da matriz
 int main(void) {
     char tecla;
     
+    inicializa();//Inicialização da Matriz
     while(1){
 		tecla = getch();
 		system("cls");
@@ -30,4 +32,14 @@ int main(void) {
     }
     printf("\n\n");	
 	return 0;
+}
+
+void inicializa(){//Função que inicializa a matriz no início do programa
+    int i, j;
+    for(i = 0; i < 4; i++ )
+        for(j = 0; j < 4; j++)
+            mat[i][j] = ' ';
+
+    mat[0][0] = '*';//Origem
+	imprimir();
 }
