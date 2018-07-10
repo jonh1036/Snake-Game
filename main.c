@@ -24,7 +24,7 @@ int main(void) {
 		        break;
 		    case 100: direita();//Movimentar para direita
 		        break;
-			case 113: //Para encerrar o jogo
+			case 113: exit(0);//Para encerrar o jogo
 		      	
 			case 115: baixo();//Movimentar para baixo
 		    	break;
