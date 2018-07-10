@@ -6,6 +6,7 @@ void inicializa();
 void imprimir();
 void direita();
 void esquerda();
+void cima();
 
 int x = 0, y = 0;//Coordenadas da matriz
 char mat[10][10];//Criação da matriz
@@ -26,7 +27,7 @@ int main(void) {
 		      	
 			case 115: //Movimentar para baixo
 		    	break;
-		    case 119: //Movimentar para cima
+		    case 119: cima();//Movimentar para cima
 		        break;
 	        default: 
 	            break;
@@ -77,5 +78,16 @@ void esquerda(){//Função que move o '*' para a esquerda
 	    mat[x][y] = mat[x][y-1];
 	    mat[x][y-1] = aux;
 	    y -=1;
+	}
+}
+
+void cima(){//Função que move o '*' para a cima
+    char aux;
+    int a = x-1, b = y;
+	if(a>=0 && a<=3) { //Adicionando limite para a extremidade de cima
+		aux = mat[x][y];
+	    mat[x][y] = mat[x-1][y];
+	    mat[x-1][y] = aux;
+	    x -=1;
 	}
 }
