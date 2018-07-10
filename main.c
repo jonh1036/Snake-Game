@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 void inicializa();
+void imprimir();
 
 int x = 0, y = 0;//Coordenadas da matriz
 char mat[10][10];//Criação da matriz
@@ -28,7 +29,7 @@ int main(void) {
 	        default: 
 	            break;
         }
-	
+		imprimir();
     }
     printf("\n\n");	
 	return 0;
@@ -42,4 +43,15 @@ void inicializa(){//Função que inicializa a matriz no início do programa
 
     mat[0][0] = '*';//Origem
 	imprimir();
+}
+
+void imprimir(){//Função que imprime a matriz completa
+    int i, j;
+    for(i = 0; i < 4; i++){
+        printf("|");
+        for(j = 0; j < 4; j++){
+            printf("%c",mat[i][j]);
+        }
+        printf("|\n");
+    }
 }
