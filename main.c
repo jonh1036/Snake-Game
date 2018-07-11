@@ -1,4 +1,4 @@
-//  Created by Jonathan Pinho 10/07/2018.
+//  Created by Jonathan Pinho and Vinicius Mangueira 10/07/2018.
 //  Copyright © 2018 Jonathan. All rights reserved.
 
 #include <stdio.h>
@@ -8,13 +8,10 @@ void direita();
 void esquerda();
 void cima();
 void baixo();
-
 int x = 0, y = 0;//Coordenadas da matriz
 char mat[10][10];//Criação da matriz
-
 int main(void) {
     char tecla;
-    
     inicializa();//Inicialização da Matriz
     while(1){
 		tecla = getch();
@@ -59,7 +56,6 @@ void imprimir(){//Função que imprime a matriz completa
         printf("|\n");
     }
 }
-
 void direita(){//Função que move o '*' para a direita
     char aux;
     int a = x, b = y+1;
@@ -70,7 +66,6 @@ void direita(){//Função que move o '*' para a direita
 	    y +=1;
 	}
 }
-
 void esquerda(){//Função que move o '*' para a esquerda
     char aux;
     int a = x, b = y-1;
@@ -81,7 +76,6 @@ void esquerda(){//Função que move o '*' para a esquerda
 	    y -=1;
 	}
 }
-
 void cima(){//Função que move o '*' para a cima
     char aux;
     int a = x-1, b = y;
@@ -92,7 +86,6 @@ void cima(){//Função que move o '*' para a cima
 	    x -=1;
 	}
 }
-
 void baixo(){//Função que move o '*' para a baixo
     char aux;
     int a = x+1, b = y;
