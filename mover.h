@@ -11,8 +11,8 @@ void baixo();
 
 void direita(){//Função que move o '*' para a direita
     char aux;
-    int a = x, b = y+1;
-	if(b>=0 && b<=3) { //Adicionando limite para a extremidade direita
+
+	if((y+1)<10) { //Adicionando limite para a extremidade direita
 	    aux = mat[x][y];
 	    mat[x][y] = mat[x][y+1];
 	    mat[x][y+1] = aux;
@@ -22,8 +22,8 @@ void direita(){//Função que move o '*' para a direita
 
 void esquerda(){//Função que move o '*' para a esquerda
     char aux;
-    int a = x, b = y-1;
-	if(b>=0 && b<=3) { //Adicionando limite para a extremidade esquerda
+
+	if((y-1)>=0) { //Adicionando limite para a extremidade esquerda
 	    aux = mat[x][y];
 	    mat[x][y] = mat[x][y-1];
 	    mat[x][y-1] = aux;
@@ -33,8 +33,8 @@ void esquerda(){//Função que move o '*' para a esquerda
 
 void cima(){//Função que move o '*' para a cima
     char aux;
-    int a = x-1, b = y;
-	if(a>=0 && a<=3) { //Adicionando limite para a extremidade de cima
+
+	if((x-1)>=0) { //Adicionando limite para a extremidade de cima
 		aux = mat[x][y];
 	    mat[x][y] = mat[x-1][y];
 	    mat[x-1][y] = aux;
@@ -44,8 +44,8 @@ void cima(){//Função que move o '*' para a cima
 
 void baixo(){//Função que move o '*' para a baixo
     char aux;
-    int a = x+1, b = y;
-	if(a>=0 && a<=3) { //Adicionando limite para a extremidade de baixo
+
+	if((x+1)<10) { //Adicionando limite para a extremidade de baixo
 	    aux = mat[x][y];
 	    mat[x][y] = mat[x+1][y];
 	    mat[x+1][y] = aux;
