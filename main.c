@@ -2,12 +2,9 @@
 //  Copyright © 2018 Jonathan. All rights reserved.
 
 #include <stdio.h>
+#include "mover.h"
 void inicializa();
 void imprimir();
-void direita();
-void esquerda();
-void cima();
-void baixo();
 
 int x = 0, y = 0;//Coordenadas da matriz
 char mat[10][10];//Criação da matriz
@@ -58,48 +55,4 @@ void imprimir(){//Função que imprime a matriz completa
         }
         printf("|\n");
     }
-}
-
-void direita(){//Função que move o '*' para a direita
-    char aux;
-    int a = x, b = y+1;
-	if(b>=0 && b<=3) { //Adicionando limite para a extremidade direita
-	    aux = mat[x][y];
-	    mat[x][y] = mat[x][y+1];
-	    mat[x][y+1] = aux;
-	    y +=1;
-	}
-}
-
-void esquerda(){//Função que move o '*' para a esquerda
-    char aux;
-    int a = x, b = y-1;
-	if(b>=0 && b<=3) { //Adicionando limite para a extremidade esquerda
-	    aux = mat[x][y];
-	    mat[x][y] = mat[x][y-1];
-	    mat[x][y-1] = aux;
-	    y -=1;
-	}
-}
-
-void cima(){//Função que move o '*' para a cima
-    char aux;
-    int a = x-1, b = y;
-	if(a>=0 && a<=3) { //Adicionando limite para a extremidade de cima
-		aux = mat[x][y];
-	    mat[x][y] = mat[x-1][y];
-	    mat[x-1][y] = aux;
-	    x -=1;
-	}
-}
-
-void baixo(){//Função que move o '*' para a baixo
-    char aux;
-    int a = x+1, b = y;
-	if(a>=0 && a<=3) { //Adicionando limite para a extremidade de baixo
-	    aux = mat[x][y];
-	    mat[x][y] = mat[x+1][y];
-	    mat[x+1][y] = aux;
-		x +=1;
-	}   
 }
