@@ -33,10 +33,14 @@ void imprimir(){//Função que imprime a matriz completa
 }
 
 void gerarDoce(){
-	int x1, y1;
+	int x1, y1,i;
 	do{
-		x1 = rand() % 10;//Gera uma coordenada aleatória no eixo X
-		y1 = rand() % 10;//Gera uma coordenada aleatória no eixo Y
+	   	srand(time(NULL));
+     	for (i=0; i<1; i++){
+            x1 = rand() %10; //Gera uma coordenada aleatória no eixo X
+            y1 = rand() %10; //Gera uma coordenada aleatória no eixo Y
+      		}
+		
 		if(mat[y1][x1] == ' '){
 			mat[y1][x1] = '$';
 			break;

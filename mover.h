@@ -9,6 +9,8 @@ void esquerda();
 void cima();
 void baixo();
 
+
+int cont = 0;
 void direita(){//Função que move o '*' para a direita
     char aux;
 
