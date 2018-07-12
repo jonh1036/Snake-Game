@@ -16,6 +16,23 @@ void direita(){//Função que move o '*' para a direita
 
 	if((x+1)<10 && mat[y][x+1] == '$') { //Caso de teste quando se encontra o doce
 		mat[y][x+1] = '*';
+			
+	int x1, y1,i;
+	do{
+	   	srand(time(NULL));
+     	for (i=0; i<1; i++){
+            x1 = rand() %10; //Gera uma coordenada aleatória no eixo X
+            y1 = rand() %10; //Gera uma coordenada aleatória no eixo Y
+      		}
+		
+		if(mat[y1][x1] == ' '){
+			mat[y1][x1] = '$';
+			break;
+		}
+	}while(1);	
+	mat[y][x+1] = ' ';
+		
+
 	}
 	else if((x+1)<10) { //Adicionando limite para a extremidade direita
 	    aux = mat[y][x];
@@ -25,11 +42,27 @@ void direita(){//Função que move o '*' para a direita
 	}
 }
 
+
+
 void esquerda(){//Função que move o '*' para a esquerda
     char aux;
 
 	if((x-1)>0 && mat[y][x-1] == '$') { //Caso de teste quando se encontra o doce
 		mat[y][x-1] = '*';
+		int x1, y1,i;
+	do{
+	   	srand(time(NULL));
+     	for (i=0; i<1; i++){
+            x1 = rand() %10; //Gera uma coordenada aleatória no eixo X
+            y1 = rand() %10; //Gera uma coordenada aleatória no eixo Y
+      		}
+		
+		if(mat[y1][x1] == ' '){
+			mat[y1][x1] = '$';
+			break;
+		}
+	}while(1);
+	mat[y][x-1] == ' ';
 	}
 	else if((x-1)>=0) { //Adicionando limite para a extremidade esquerda
 	    aux = mat[y][x];
@@ -44,6 +77,20 @@ void cima(){//Função que move o '*' para a cima
 
 	if((y-1)>0 && mat[y-1][x] == '$') { //Caso de teste quando se encontra o doce
 		mat[y-1][x] = '*';
+		int x1, y1,i;
+	do{
+	   	srand(time(NULL));
+     	for (i=0; i<1; i++){
+            x1 = rand() %10; //Gera uma coordenada aleatória no eixo X
+            y1 = rand() %10; //Gera uma coordenada aleatória no eixo Y
+      		}
+		
+		if(mat[y1][x1] == ' '){
+			mat[y1][x1] = '$';
+			break;
+		}
+	}while(1);	
+	mat[y-1][x] == ' ';
 	}
 	else if((y-1)>=0) { //Adicionando limite para a extremidade de cima
 		aux = mat[y][x];
@@ -58,6 +105,20 @@ void baixo(){//Função que move o '*' para a baixo
 
 	if((y+1)<10 && mat[y+1][x] == '$') { //Caso de teste quando se encontra o doce
 		mat[y][x+1] = '*';
+		int x1, y1,i;
+	do{
+	   	srand(time(NULL));
+     	for (i=0; i<1; i++){
+            x1 = rand() %10; //Gera uma coordenada aleatória no eixo X
+            y1 = rand() %10; //Gera uma coordenada aleatória no eixo Y
+      		}
+		
+		if(mat[y1][x1] == ' '){
+			mat[y1][x1] = '$';
+			break;
+		}
+	}while(1);	
+	mat[y+1][x] == ' ';
 	}
 	else if((y+1)<10) { //Adicionando limite para a extremidade de baixo
 	    aux = mat[y][x];
