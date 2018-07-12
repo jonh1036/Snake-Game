@@ -1,4 +1,4 @@
-//  Created by Jonathan Pinho 10/07/2018.
+//  Created by Jonathan Pinho and Vinicius Mangueira 10/07/2018.
 //  Copyright © 2018 Jonathan. All rights reserved.
 
 #include <stdio.h>
