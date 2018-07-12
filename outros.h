@@ -37,8 +37,8 @@ void gerarDoce(){
 	do{
 		x1 = rand() % 10;//Gera uma coordenada aleatória no eixo X
 		y1 = rand() % 10;//Gera uma coordenada aleatória no eixo Y
-		if(mat[x1][y1] == ' '){
-			mat[x1][y1] = '$';
+		if(mat[y1][x1] == ' '){
+			mat[y1][x1] = '$';
 			break;
 		}
 	}while(1);
