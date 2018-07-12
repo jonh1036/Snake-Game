@@ -12,7 +12,10 @@ void baixo();
 void direita(){//Função que move o '*' para a direita
     char aux;
 
-	if((x+1)<10) { //Adicionando limite para a extremidade direita
+	if((x+1)<10 && mat[y][x+1] == '$') { //Caso de teste quando se encontra o doce
+		mat[y][x+1] = '*';
+	}
+	else if((x+1)<10) { //Adicionando limite para a extremidade direita
 	    aux = mat[y][x];
 	    mat[y][x] = mat[y][x+1];
 	    mat[y][x+1] = aux;
@@ -23,7 +26,10 @@ void direita(){//Função que move o '*' para a direita
 void esquerda(){//Função que move o '*' para a esquerda
     char aux;
 
-	if((x-1)>=0) { //Adicionando limite para a extremidade esquerda
+	if((x-1)>0 && mat[y][x-1] == '$') { //Caso de teste quando se encontra o doce
+		mat[y][x-1] = '*';
+	}
+	else if((x-1)>=0) { //Adicionando limite para a extremidade esquerda
 	    aux = mat[y][x];
 	    mat[y][x] = mat[y][x-1];
 	    mat[y][x-1] = aux;
@@ -34,7 +40,10 @@ void esquerda(){//Função que move o '*' para a esquerda
 void cima(){//Função que move o '*' para a cima
     char aux;
 
-	if((y-1)>=0) { //Adicionando limite para a extremidade de cima
+	if((y-1)>0 && mat[y-1][x] == '$') { //Caso de teste quando se encontra o doce
+		mat[y-1][x] = '*';
+	}
+	else if((y-1)>=0) { //Adicionando limite para a extremidade de cima
 		aux = mat[y][x];
 	    mat[y][x] = mat[y-1][x];
 	    mat[y-1][x] = aux;
@@ -45,7 +54,10 @@ void cima(){//Função que move o '*' para a cima
 void baixo(){//Função que move o '*' para a baixo
     char aux;
 
-	if((y+1)<10) { //Adicionando limite para a extremidade de baixo
+	if((y+1)<10 && mat[y+1][x] == '$') { //Caso de teste quando se encontra o doce
+		mat[y][x+1] = '*';
+	}
+	else if((y+1)<10) { //Adicionando limite para a extremidade de baixo
 	    aux = mat[y][x];
 	    mat[y][x] = mat[y+1][x];
 	    mat[y+1][x] = aux;
