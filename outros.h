@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 extern char mat[10][10];
 extern int x, y;
 
@@ -39,7 +40,7 @@ void gerarDoce(){
      	for (i=0; i<1; i++){
             x1 = rand() %10; //Gera uma coordenada aleatória no eixo X
             y1 = rand() %10; //Gera uma coordenada aleatória no eixo Y
-      		}
+      	}
 		
 		if(mat[y1][x1] == ' '){
 			mat[y1][x1] = '$';
