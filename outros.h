@@ -4,12 +4,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-extern char mat[10][10];
-extern int x, y;
 
 void inicializa();
 void imprimir();
 void gerarDoce();
+
+extern int x, y;
+extern char mat[10][10];
 
 void inicializa(){//Função que inicializa a matriz no início do programa
     int i, j;

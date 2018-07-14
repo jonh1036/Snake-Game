@@ -4,12 +4,17 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
-extern char mat[10][10];
-extern int x, y;
 void direita();
 void esquerda();
 void cima();
 void baixo();
+void rigth();
+void left();
+void up();
+void down();
+
+extern int x, y;
+extern char mat[10][10];
 
 void direita(){//Função que move o '*' para a direita
     char aux;
@@ -29,14 +34,22 @@ void direita(){//Função que move o '*' para a direita
 				mat[y1][x1] = '$';
 				break;
 			}
-		}while(1);	
+		}while(1);
+		rigth();	
 	}
 	else if((x+1)<10) { //Adicionando limite para a extremidade direita
-	    aux = mat[y][x];
-	    mat[y][x] = mat[y][x+1];
-	    mat[y][x+1] = aux;
-	    x +=1;
+	    rigth();
 	}
+}
+
+void rigth(){
+	char aux;
+	int xR = x, yR = y;
+	
+	aux = mat[y][x];
+	mat[y][x] = mat[y][x+1];
+	mat[y][x+1] = aux;
+	x +=1;
 }
 
 void esquerda(){//Função que move o '*' para a esquerda
@@ -58,13 +71,21 @@ void esquerda(){//Função que move o '*' para a esquerda
 				break;
 			}
 		}while(1);
+		left();
 	}
 	else if((x-1)>=0) { //Adicionando limite para a extremidade esquerda
-	    aux = mat[y][x];
-	    mat[y][x] = mat[y][x-1];
-	    mat[y][x-1] = aux;
-	    x -=1;
+	    left();
 	}
+}
+
+void left(){
+	char aux;
+	int xL = x, yL = y;
+	
+	aux = mat[y][x];
+	mat[y][x] = mat[y][x-1];
+	mat[y][x-1] = aux;
+	x -=1;
 }
 
 void cima(){//Função que move o '*' para a cima
@@ -86,13 +107,21 @@ void cima(){//Função que move o '*' para a cima
 				break;
 			}
 		}while(1);	
+		up();
 	}
 	else if((y-1)>=0) { //Adicionando limite para a extremidade de cima
-		aux = mat[y][x];
-	    mat[y][x] = mat[y-1][x];
-	    mat[y-1][x] = aux;
-	    y -=1;
+		up();
 	}
+}
+
+void up(){
+	char aux;
+	int xU = x, yU = y;
+	
+	aux = mat[y][x];
+	mat[y][x] = mat[y-1][x];
+	mat[y-1][x] = aux;
+	y -=1;
 }
 
 void baixo(){//Função que move o '*' para a baixo
@@ -114,11 +143,19 @@ void baixo(){//Função que move o '*' para a baixo
 				break;
 			}
 		}while(1);
+		down();
 	}
 	else if((y+1)<10) { //Adicionando limite para a extremidade de baixo
-	    aux = mat[y][x];
-	    mat[y][x] = mat[y+1][x];
-	    mat[y+1][x] = aux;
-	    y +=1;
+	    down();
 	}   
+}
+
+void down(){
+	char aux;
+	int xD = x, yD = y;
+	
+	aux = mat[y][x];
+	mat[y][x] = mat[y+1][x];
+	mat[y+1][x] = aux;
+	y +=1;
 }
