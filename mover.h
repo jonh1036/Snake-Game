@@ -103,7 +103,7 @@ void baixo(){//Função que move o '*' para a baixo
     char aux;
 
 	if((y+1)<10 && mat[y+1][x] == '$') { //Caso de teste quando se encontra o doce
-		mat[y][x+1] = '*';
+		mat[y+1][x] = '*';
 		
 		int x1, y1,i;
 		do{
