@@ -12,6 +12,7 @@ void gerarDoce();
 extern int x, y;
 extern char mat[10][10];
 
+
 void inicializa(){//Função que inicializa a matriz no início do programa
     int i, j;
     for(i = 0; i < 10; i++ )

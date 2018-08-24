@@ -5,7 +5,7 @@
 #include "mover.h"
 #include "outros.h"
 #define MAT_LENGHT 10
-#define MAX_WORM
+#define MAX_WORM 100
 
 
 int x = 0, y = 0;//Coordenadas da matriz
