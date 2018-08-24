@@ -4,9 +4,12 @@
 #include <stdio.h>
 #include "mover.h"
 #include "outros.h"
+#define MAT_LENGHT 10
+#define MAX_WORM
+
 
 int x = 0, y = 0;//Coordenadas da matriz
-char mat[10][10];//Criação da matriz
+char mat[MAT_LENGHT][MAT_LENGHT];//Criação da matriz
 
 int main(void) {
     char tecla;
