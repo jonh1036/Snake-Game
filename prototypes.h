@@ -2,16 +2,17 @@
 //  Aquivo onde ficará as protótipos de funções e structs
 
 
-typedef struct _Position_ {
+typedef struct Position {
     int x,y;
 };
 
-struct _Snake_ {
+struct Snake {
     int size;
+    struct Position bodySize[50];
+    
 };
 
-struct _Candy_ {
-    _Position_ *CandyPosition;
+struct Candy {
+    struct Position *CandyPosition;
     int life;
-  
 };

@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
+#include "prototypes.h"
 void direita();
 void esquerda();
 void cima();
@@ -16,11 +17,18 @@ void down();
 extern int x, y;
 extern char mat[10][10];
 
+struct Snake positionSnake;
+
 void direita(){//Função que move o '*' para a direita
     char aux;
 
 	if((x+1)<10 && mat[y][x+1] == '$') { //Caso de teste quando se encontra o doce
 		mat[y][x+1] = '*';
+		
+		
+		positionSnake.size++;
+		positionSnake.bodySize[1].x = mat[0][x+1];
+		positionSnake.bodySize[1].y	= mat[y][0];  //Test in mat, add x, y, test, after implemented loop to make it.
 			
 		int x1, y1,i;
 		do{
