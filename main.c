@@ -8,7 +8,7 @@
 #define MAX_WORM 100
 
 
-int x = 0, y = 0;//Coordenadas da matriz
+int x = 2, y = 0;//Coordenadas da matriz
 char mat[MAT_LENGHT][MAT_LENGHT];//Criação da matriz
 
 int main(void) {
