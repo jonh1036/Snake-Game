@@ -29,7 +29,7 @@ int main(void) {
 		    	break;
 		    case 119: cima();//Movimentar para cima
 		        break;
-	        default: 
+	        default: printf("Teclas permitidas: \nPara cima (tecla W), \nPara baixo (tecla S),\nPara a esquerda (tecla A)\nPara a direita (tecla D)\nPara sair (tecla Q)\n\n");
 	            break;
         }
 		imprimir();
