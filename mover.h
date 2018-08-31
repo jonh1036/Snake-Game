@@ -48,6 +48,10 @@ void direita(){//Função que move o '*' para a direita
 	else if((x+1)<10) { //Adicionando limite para a extremidade direita
 	    rigth();
 	}
+	else if((x+1)==10) {
+		puts("GAMER OVER");
+		exit(0);
+	}
 }
 
 void rigth(){
@@ -83,6 +87,10 @@ void esquerda(){//Função que move o '*' para a esquerda
 	}
 	else if((x-1)>=0) { //Adicionando limite para a extremidade esquerda
 	    left();
+	}
+	else if((x-1)<0) {
+		puts("GAMER OVER");
+		exit(0);
 	}
 }
 
@@ -120,6 +128,10 @@ void cima(){//Função que move o '*' para a cima
 	else if((y-1)>=0) { //Adicionando limite para a extremidade de cima
 		up();
 	}
+	else if((y-1)<0) {
+		puts("GAMER OVER");
+		exit(0);
+	}
 }
 
 void up(){
@@ -155,6 +167,10 @@ void baixo(){//Função que move o '*' para a baixo
 	}
 	else if((y+1)<10) { //Adicionando limite para a extremidade de baixo
 	    down();
+	}
+	else if((y+1)==10) {
+		puts("GAMER OVER");
+		exit(0);
 	}   
 }
 
