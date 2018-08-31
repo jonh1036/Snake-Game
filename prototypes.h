@@ -8,7 +8,7 @@ typedef struct Position {
 
 struct Snake {
     int size;
-    struct Position bodySize[50];
+    struct Position bodySize[51];
     
 };
 
