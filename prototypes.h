@@ -9,6 +9,7 @@ typedef struct Position {
 struct Snake {
     int size;
     struct Position bodySize[51];
+    
 };
 
 struct Candy {
