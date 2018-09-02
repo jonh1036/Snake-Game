@@ -9,29 +9,12 @@
 
 int x = 2, y = 0;//Coordenadas da matriz
 char mat[MAT_LENGHT][MAT_LENGHT];//Criação da matriz
+char tecla = 'd';
 
 int main(void) {
-    char tecla;
-    
     inicializa();//Inicialização da Matriz
     while(1){
-		tecla = getch();
-		system("cls");
-		switch(tecla){
-		    case 97: esquerda();//Movimentar para esquerda
-		        break;
-		    case 100: direita();//Movimentar para direita
-		        break;
-			case 113: exit(0);//Para encerrar o jogo
-		      	
-			case 115: baixo();//Movimentar para baixo
-		    	break;
-		    case 119: cima();//Movimentar para cima
-		        break;
-	        default: printf("Teclas permitidas: \nPara cima (tecla W), \nPara baixo (tecla S),\nPara a esquerda (tecla A)\nPara a direita (tecla D)\nPara sair (tecla Q)\n\n");
-	            break;
-        }
-		imprimir();
+		movimentar();
     }
     printf("\n\n");	
 	return 0;

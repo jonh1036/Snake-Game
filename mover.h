@@ -21,6 +21,7 @@ struct Snake positionSnake;
 
 void direita(){//Função que move o '*' para a direita
     char aux;
+    int i;
 
 	if((x+1)<10 && mat[y][x+1] == '$') { //Caso de teste quando se encontra o doce
 		mat[y][x+1] = '*';
@@ -29,8 +30,8 @@ void direita(){//Função que move o '*' para a direita
 		positionSnake.size++;
 		positionSnake.bodySize[1].x = mat[0][x+1];
 		positionSnake.bodySize[1].y	= mat[y][0];  //Test in mat, add x, y, test, after implemented loop to make it.
-			
-		int x1, y1,i;
+	
+		int x1, y1;
 		do{
 		   	srand(time(NULL));
 	     	for (i=0; i<1; i++){
@@ -56,12 +57,11 @@ void direita(){//Função que move o '*' para a direita
 
 void rigth(){
 	char aux;
-	int xR = x, yR = y;
-	
+
 	aux = mat[y][x];
 	mat[y][x] = mat[y][x+1];
 	mat[y][x+1] = aux;
-	x +=1;
+	x +=1;	
 }
 
 void esquerda(){//Função que move o '*' para a esquerda
@@ -69,6 +69,8 @@ void esquerda(){//Função que move o '*' para a esquerda
 
 	if((x-1)>0 && mat[y][x-1] == '$') { //Caso de teste quando se encontra o doce
 		mat[y][x-1] = '*';
+		
+		positionSnake.size++;
 		
 		int x1, y1,i;
 		do{
@@ -96,7 +98,6 @@ void esquerda(){//Função que move o '*' para a esquerda
 
 void left(){
 	char aux;
-	int xL = x, yL = y;
 	
 	aux = mat[y][x];
 	mat[y][x] = mat[y][x-1];
@@ -109,8 +110,10 @@ void cima(){//Função que move o '*' para a cima
 
 	if((y-1)>0 && mat[y-1][x] == '$') { //Caso de teste quando se encontra o doce
 		mat[y-1][x] = '*';
+		
+		positionSnake.size++;
+		
 		int x1, y1,i;
-	
 		do{
 		   	srand(time(NULL));
 	     	for (i=0; i<1; i++){
@@ -136,7 +139,6 @@ void cima(){//Função que move o '*' para a cima
 
 void up(){
 	char aux;
-	int xU = x, yU = y;
 	
 	aux = mat[y][x];
 	mat[y][x] = mat[y-1][x];
@@ -149,6 +151,8 @@ void baixo(){//Função que move o '*' para a baixo
 
 	if((y+1)<10 && mat[y+1][x] == '$') { //Caso de teste quando se encontra o doce
 		mat[y+1][x] = '*';
+		
+		positionSnake.size++;
 		
 		int x1, y1,i;
 		do{
@@ -176,7 +180,6 @@ void baixo(){//Função que move o '*' para a baixo
 
 void down(){
 	char aux;
-	int xD = x, yD = y;
 	
 	aux = mat[y][x];
 	mat[y][x] = mat[y+1][x];

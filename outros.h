@@ -8,9 +8,13 @@
 void inicializa();
 void imprimir();
 void gerarDoce();
+void movimentar();
 
 extern int x, y;
 extern char mat[10][10];
+extern char tecla;
+
+extern struct Snake positionSnake;
 
 void inicializa(){//Função que inicializa a matriz no início do programa
     int i, j;
@@ -21,7 +25,8 @@ void inicializa(){//Função que inicializa a matriz no início do programa
 			}
 			else
 				mat[i][j] = ' ';
-		}    
+		}
+	positionSnake.size = 3; 
     gerarDoce();
 	imprimir();
 }
@@ -51,4 +56,26 @@ void gerarDoce(){
 			break;
 		}
 	}while(1);
+}
+
+void movimentar(){
+	if (kbhit()){
+		tecla = getch();	
+	}
+	system("cls");
+	switch(tecla){
+	    case 97: esquerda();//Movimentar para esquerda
+	        break;
+	    case 100: direita();//Movimentar para direita
+	        break;
+		case 113: exit(0);//Para encerrar o jogo
+	      	
+		case 115: baixo();//Movimentar para baixo
+	    	break;
+	    case 119: cima();//Movimentar para cima
+	        break;
+	    default: printf("Teclas permitidas: \nPara cima (tecla W), \nPara baixo (tecla S),\nPara a esquerda (tecla A)\nPara a direita (tecla D)\nPara sair (tecla Q)\n\n");
+	        break;
+       }
+	imprimir();
 }
