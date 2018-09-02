@@ -59,8 +59,13 @@ void gerarDoce(){
 }
 
 void movimentar(){
+	char tec;
+	
 	if (kbhit()){
-		tecla = getch();	
+		tec = getch();
+		if( (tecla=='a' && tec != 'd') || (tecla=='d' && tec != 'a') || (tecla=='w' && tec != 's') || (tecla=='s' && tec != 'w') ){
+			tecla = tec;	
+		}
 	}
 	system("cls");
 	switch(tecla){

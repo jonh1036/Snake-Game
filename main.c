@@ -2,6 +2,7 @@
 //  Copyright © 2018 Jonathan. All rights reserved.
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "mover.h"
 #include "outros.h"
 #define MAT_LENGHT 10
