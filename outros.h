@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#define MAT 10
+#define MAX_WORM 100
 
 void inicializa();
 void imprimir();
@@ -11,7 +13,7 @@ void gerarDoce();
 void movimentar();
 
 extern int x, y;
-extern char mat[10][10];
+extern char mat[MAT][MAT];
 extern char tecla;
 
 extern struct Snake positionSnake;
@@ -69,15 +71,15 @@ void movimentar(){
 	}
 	system("cls");
 	switch(tecla){
-	    case 97: esquerda();//Movimentar para esquerda
+	    case 'a': esquerda();//Movimentar para esquerda
 	        break;
-	    case 100: direita();//Movimentar para direita
+	    case 'd': direita();//Movimentar para direita
 	        break;
-		case 113: exit(0);//Para encerrar o jogo
+		case 'q': exit(0);//Para encerrar o jogo
 	      	
-		case 115: baixo();//Movimentar para baixo
+		case 's': baixo();//Movimentar para baixo
 	    	break;
-	    case 119: cima();//Movimentar para cima
+	    case 'w': cima();//Movimentar para cima
 	        break;
 	    default: printf("Teclas permitidas: \nPara cima (tecla W), \nPara baixo (tecla S),\nPara a esquerda (tecla A)\nPara a direita (tecla D)\nPara sair (tecla Q)\n\n");
 	        break;

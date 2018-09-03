@@ -5,6 +5,9 @@
 #include <time.h>
 #include <stdlib.h>
 #include "prototypes.h"
+#define MAT 10
+#define MAX_WORM 100
+
 void direita();
 void esquerda();
 void cima();
@@ -15,7 +18,7 @@ void up();
 void down();
 
 extern int x, y;
-extern char mat[10][10];
+extern char mat[MAT][MAT];
 
 struct Snake positionSnake;
 
@@ -43,12 +46,12 @@ void direita(){//Função que move o '*' para a direita
 		}while(1);
 		rigth();	
 	}
-	else if((x+1)<10) { //Adicionando limite para a extremidade direita
-	    rigth();
-	}
-	else if((x+1)==10) {
+	else if(((x+1)<10 && mat[y][x+1] == '*') || ((x+1)==10)){ //Caso de teste quando se encontra o outra parte do corpo ou com a parede
 		puts("GAMER OVER");
 		exit(0);
+	}
+	else if((x+1)<10) { //Adicionando limite para a extremidade direita
+	    rigth();
 	}
 }
 
@@ -84,12 +87,12 @@ void esquerda(){//Função que move o '*' para a esquerda
 		}while(1);
 		left();
 	}
-	else if((x-1)>=0) { //Adicionando limite para a extremidade esquerda
-	    left();
-	}
-	else if((x-1)<0) {
+	else if(((x-1)>0 && mat[y][x-1] == '*') || ((x-1)<0)){ //Caso de teste quando se encontra o outra parte do corpo ou com a parede
 		puts("GAMER OVER");
 		exit(0);
+	}
+	else if((x-1)>=0) { //Adicionando limite para a extremidade esquerda
+	    left();
 	}
 }
 
@@ -125,12 +128,12 @@ void cima(){//Função que move o '*' para a cima
 		}while(1);	
 		up();
 	}
-	else if((y-1)>=0) { //Adicionando limite para a extremidade de cima
-		up();
-	}
-	else if((y-1)<0) {
+	else if(((y-1)>0 && mat[y-1][x] == '*') || ((y-1)<0)){ //Caso de teste quando se encontra o outra parte do corpo ou com a parede
 		puts("GAMER OVER");
 		exit(0);
+	}
+	else if((y-1)>=0) { //Adicionando limite para a extremidade de cima
+		up();
 	}
 }
 
@@ -166,13 +169,13 @@ void baixo(){//Função que move o '*' para a baixo
 		}while(1);
 		down();
 	}
-	else if((y+1)<10) { //Adicionando limite para a extremidade de baixo
-	    down();
-	}
-	else if((y+1)==10) {
+	else if(((y+1)<10 && mat[y+1][x] == '*') || ((y+1)==10)){ //Caso de teste quando se encontra o outra parte do corpo ou com a parede
 		puts("GAMER OVER");
 		exit(0);
-	}   
+	}
+	else if((y+1)<10) { //Adicionando limite para a extremidade de baixo
+	    down();
+	}  
 }
 
 void down(){

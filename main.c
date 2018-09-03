@@ -5,11 +5,11 @@
 #include <stdlib.h>
 #include "mover.h"
 #include "outros.h"
-#define MAT_LENGHT 10
+#define MAT 10
 #define MAX_WORM 100
 
 int x = 2, y = 0;//Coordenadas da matriz
-char mat[MAT_LENGHT][MAT_LENGHT];//Criação da matriz
+char mat[MAT][MAT];//Criação da matriz
 char tecla = 'd';
 
 int main(void) {
