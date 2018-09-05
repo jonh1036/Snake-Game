@@ -16,7 +16,7 @@ void rigth();
 void left();
 void up();
 void down();
-
+extern void gerarDoce();
 extern int x, y;
 extern char mat[MAT][MAT];
 
@@ -33,16 +33,8 @@ void direita(){//Função que move o '*' para a direita
 	
 		int x1, y1;
 		do{
-		   	srand(time(NULL));
-	     	for (i=0; i<1; i++){
-	            x1 = rand() %10; //Gera uma coordenada aleatória no eixo X
-	            y1 = rand() %10; //Gera uma coordenada aleatória no eixo Y
-	      	}
-			
-			if(mat[y1][x1] == ' '){
-				mat[y1][x1] = '$';
-				break;
-			}
+		  	gerarDoce();
+			break;
 		}while(1);
 		rigth();	
 	}
@@ -57,7 +49,6 @@ void direita(){//Função que move o '*' para a direita
 
 void rigth(){
 	char aux;
-
 	aux = mat[y][x];
 	mat[y][x] = mat[y][x+1];
 	mat[y][x+1] = aux;
@@ -74,16 +65,8 @@ void esquerda(){//Função que move o '*' para a esquerda
 		
 		int x1, y1,i;
 		do{
-		   	srand(time(NULL));
-	     	for (i=0; i<1; i++){
-	            x1 = rand() %10; //Gera uma coordenada aleatória no eixo X
-	            y1 = rand() %10; //Gera uma coordenada aleatória no eixo Y
-	      	}
-			
-			if(mat[y1][x1] == ' '){
-				mat[y1][x1] = '$';
-				break;
-			}
+		   	gerarDoce();
+			break;
 		}while(1);
 		left();
 	}
@@ -115,16 +98,8 @@ void cima(){//Função que move o '*' para a cima
 		
 		int x1, y1,i;
 		do{
-		   	srand(time(NULL));
-	     	for (i=0; i<1; i++){
-	            x1 = rand() %10; //Gera uma coordenada aleatória no eixo X
-	            y1 = rand() %10; //Gera uma coordenada aleatória no eixo Y
-	      	}
-			
-			if(mat[y1][x1] == ' '){
-				mat[y1][x1] = '$';
-				break;
-			}
+		   	gerarDoce();
+			break;
 		}while(1);	
 		up();
 	}
@@ -156,16 +131,8 @@ void baixo(){//Função que move o '*' para a baixo
 		
 		int x1, y1,i;
 		do{
-		   	srand(time(NULL));
-	     	for (i=0; i<1; i++){
-	            x1 = rand() %10; //Gera uma coordenada aleatória no eixo X
-	            y1 = rand() %10; //Gera uma coordenada aleatória no eixo Y
-	      	}
-			
-			if(mat[y1][x1] == ' '){
-				mat[y1][x1] = '$';
-				break;
-			}
+			gerarDoce();
+			break;
 		}while(1);
 		down();
 	}
@@ -186,3 +153,6 @@ void down(){
 	mat[y+1][x] = aux;
 	y +=1;
 }
+
+
+

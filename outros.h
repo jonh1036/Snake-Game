@@ -44,7 +44,7 @@ void imprimir(){//Função que imprime a matriz completa
     }
 }
 
-void gerarDoce(){
+extern void gerarDoce(){
 	int x1, y1,i;
 	do{
 	   	srand(time(NULL));
