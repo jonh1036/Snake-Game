@@ -1,13 +1,27 @@
-//  Created by Jonathan Pinho and Vinicius Mangueira 10/07/2018.
-//  Copyright © 2018 Jonathan. All rights reserved.
-
 #include <stdio.h>
-#include <time.h>
 #include <stdlib.h>
-#include "prototypes.h"
 #define MAT 10
 #define MAX_WORM 100
 
+
+typedef struct  {
+    int x,y;
+} Position;
+
+typedef struct  {
+    int size;
+    struct Position *p;
+} Snake;
+
+typedef struct  {
+    Position position;
+    int life;
+} Candy;
+
+void inicializa();
+void imprimir();
+void gerarDoce();
+void movimentar();
 void direita();
 void esquerda();
 void cima();
@@ -16,11 +30,96 @@ void rigth();
 void left();
 void up();
 void down();
-extern void gerarDoce();
-extern int x, y;
-extern char mat[MAT][MAT];
 
-struct Snake positionSnake;
+int x = 2, y = 0;//Coordenadas da matriz
+char mat[MAT][MAT];//Criação da matriz
+char tecla = 'd';
+Snake snake;
+Candy candy;
+
+
+int main(void) {
+    inicializa();//Inicialização da Matriz
+    while(1){
+		movimentar();
+    }
+    printf("\n\n");	
+	return 0;
+}
+
+
+void inicializa(){//Função que inicializa a matriz no início do programa
+    int i, j;
+	snake.size = 3; 
+	snake.p = (Position*) malloc(sizeof(Position) * snake.size);
+	ponteiroNulo(snake.p);
+	for(i = 0; i < 10; i++ )
+        for(j = 0; j < 10; j++){
+        	if(i == 0 && (j>=0 && j<=2)){
+        		mat[i][j] = '*';//Origem
+			}
+			else
+				mat[i][j] = ' ';
+		}
+    gerarDoce();
+	imprimir();
+}
+
+void imprimir(){//Função que imprime a matriz completa
+    int i, j;
+    for(i = 0; i < 10; i++){
+        printf("|");
+        for(j = 0; j < 10; j++){
+            printf("%c",mat[i][j]);
+        }
+        printf("|\n");
+    }
+}
+
+void gerarDoce(){
+	int x1, y1,i;
+	
+	candy.position.x = rand()%10;
+	candy.position.y = rand()%10;
+	
+	
+}
+
+int ponteiroNulo (Position *p) {
+	if(p == NULL) {
+		printf("Does not possible alloc");
+		exit(1);
+	}
+	return 0;
+}
+//mover
+void movimentar(){
+	char tec;
+	
+	if (kbhit()){
+		tec = getch();
+		if( (tecla=='a' && tec != 'd') || (tecla=='d' && tec != 'a') || (tecla=='w' && tec != 's') || (tecla=='s' && tec != 'w') ){
+			tecla = tec;	
+		}
+	}
+	system("cls");
+	switch(tecla){
+	    case 'a': esquerda();//Movimentar para esquerda
+	        break;
+	    case 'd': direita();//Movimentar para direita
+	        break;
+		case 'q': exit(0);//Para encerrar o jogo
+	      	
+		case 's': baixo();//Movimentar para baixo
+	    	break;
+	    case 'w': cima();//Movimentar para cima
+	        break;
+	    default: printf("Teclas permitidas: \nPara cima (tecla W), \nPara baixo (tecla S),\nPara a esquerda (tecla A)\nPara a direita (tecla D)\nPara sair (tecla Q)\n\n");
+	        break;
+       }
+	imprimir();
+}
+
 
 void direita(){//Função que move o '*' para a direita
     char aux;
@@ -29,7 +128,7 @@ void direita(){//Função que move o '*' para a direita
 	if((x+1)<10 && mat[y][x+1] == '$') { //Caso de teste quando se encontra o doce
 		mat[y][x+1] = '*';
 		
-		positionSnake.size++;
+		snake.size++;
 	
 		int x1, y1;
 		do{
@@ -61,7 +160,7 @@ void esquerda(){//Função que move o '*' para a esquerda
 	if((x-1)>0 && mat[y][x-1] == '$') { //Caso de teste quando se encontra o doce
 		mat[y][x-1] = '*';
 		
-		positionSnake.size++;
+		snake.size++;
 		
 		int x1, y1,i;
 		do{
@@ -94,7 +193,7 @@ void cima(){//Função que move o '*' para a cima
 	if((y-1)>0 && mat[y-1][x] == '$') { //Caso de teste quando se encontra o doce
 		mat[y-1][x] = '*';
 		
-		positionSnake.size++;
+		snake.size++;
 		
 		int x1, y1,i;
 		do{
@@ -127,7 +226,7 @@ void baixo(){//Função que move o '*' para a baixo
 	if((y+1)<10 && mat[y+1][x] == '$') { //Caso de teste quando se encontra o doce
 		mat[y+1][x] = '*';
 		
-		positionSnake.size++;
+		snake.size++;
 		
 		int x1, y1,i;
 		do{
