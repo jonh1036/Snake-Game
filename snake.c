@@ -10,7 +10,7 @@ typedef struct  {
 
 typedef struct  {
     int size;
-    struct Position *p;
+    Position *p;
 } Snake;
 
 typedef struct  {
@@ -30,6 +30,8 @@ void rigth();
 void left();
 void up();
 void down();
+int ponteiroNulo(Position *p);
+void insertO();
 
 int x = 2, y = 0;//Coordenadas da matriz
 char mat[MAT][MAT];//Criação da matriz
@@ -53,6 +55,12 @@ void inicializa(){//Função que inicializa a matriz no início do programa
 	snake.size = 3; 
 	snake.p = (Position*) malloc(sizeof(Position) * snake.size);
 	ponteiroNulo(snake.p);
+	
+	for(i = 0; i < snake.size;i++) {
+		snake.p[i].y = snake.size - i - 1;
+		snake.p[i].x = 0;
+		}
+
 	for(i = 0; i < 10; i++ )
         for(j = 0; j < 10; j++){
         	if(i == 0 && (j>=0 && j<=2)){
@@ -61,6 +69,8 @@ void inicializa(){//Função que inicializa a matriz no início do programa
 			else
 				mat[i][j] = ' ';
 		}
+		
+		
     gerarDoce();
 	imprimir();
 }
@@ -79,10 +89,31 @@ void imprimir(){//Função que imprime a matriz completa
 void gerarDoce(){
 	int x1, y1,i;
 	
-	candy.position.x = rand()%10;
-	candy.position.y = rand()%10;
+	do{
+	   	srand(time(NULL));
+     	for (i=0; i<1; i++){
+            x1 = rand() %10; //Gera uma coordenada aleatória no eixo X
+            y1 = rand() %10; //Gera uma coordenada aleatória no eixo Y
+            candy.position.x = x1;
+			candy.position.y = y1;
+    }
+		if(mat[y1][x1] == ' '){
+			mat[y1][x1] = '$';
+			//insertO();
+			break;
+		}
+	}while(1);
+
 	
+}
+
+void insertO() {
+	int i;
+	mat[candy.position.x][candy.position.y] = '$';
 	
+	for(i = 0; i < snake.size; i++) {
+		mat[snake.p[i].x][snake.p[i].y] = '*';
+	}
 }
 
 int ponteiroNulo (Position *p) {
