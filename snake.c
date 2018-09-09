@@ -26,23 +26,20 @@ void insert();
 void movimentar();
 int ponteiroNulo(Position *p);
 
-char mat[MAT][MAT];//Cria√ß√£o da matriz
-char tecla = 'd';//Tecla de in√≠cio de jogo
-Snake snake;//Vari√°vel global para a cobra
-Candy candy;//Vari√°vel global para o doce
+char mat[MAT][MAT];//CriaÁ„o da matriz
+char tecla = 'd';//Tecla de inÌcio de jogo
+Snake snake;//Vari·vel global para a cobra
+Candy candy;//Vari·vel global para o doce
 
 int main(void) {
-    
 	inicializa();
 	movimentar();
-	
     printf("\n\n");	
 	return 0;
 }
 
-void inicializa(){//Inicializa a matriz no in√≠cio do programa
+void inicializa(){//Inicializa a matriz no inÌcio do programa
     int i;
-	
 	snake.size = 3; 
 	snake.p = (Position*) malloc(snake.size * sizeof(Position));
 	ponteiroNulo(snake.p);
@@ -86,15 +83,15 @@ void movimentar(){//mover
 	    	case 'w':	head.x--;
 						candy.life--;
 	    	    break;
-	    	default:	printf("Teclas permitidas: \nPara cima (tecla W), \nPara baixo (tecla S),\nPara a esquerda (tecla A)\nPara a direita (tecla D)\nPara sair (tecla Q)\n\n");
+	    	default: printf("Teclas permitidas: \nPara cima (tecla W), \nPara baixo (tecla S),\nPara a esquerda (tecla A)\nPara a direita (tecla D)\nPara sair (tecla Q)\n\n");
 	    	    break;
 		}
-		if(candy.life == 0){//Caso a vida do doce acabe, ser√° criado outro doce em outra posi√ß√£o aleat√≥ria na matriz
+		if(candy.life == 0){//Caso a vida do doce acabe, ser· criado outro doce em outra posiÁ„o aleatÛria na matriz
     		mat[candy.position.y][candy.position.x] = ' ';
     		gerarDoce();
 		}
 	
-		if(head.x == candy.position.x  &&  head.y == candy.position.y ){//Caso de teste para a colis√£o da cobra com um doce
+		if(head.x == candy.position.x  &&  head.y == candy.position.y ){//Caso de teste para a colis„o da cobra com um doce
     	   	snake.size++;
     		gerarDoce();
     	}
@@ -105,7 +102,7 @@ void movimentar(){//mover
 			exit(0);
 		}
 	
-		for(i = 1; i < snake.size; i++){//Verifica se bateu no pr√≥prio corpo
+		for(i = 1; i < snake.size; i++){//Verifica se bateu no prÛprio corpo
     	    if(snake.p[0].x == snake.p[i].x  &&  snake.p[0].y == snake.p[i].y){
     	        puts("\nGame Over");
 				free(snake.p);
@@ -115,6 +112,7 @@ void movimentar(){//mover
 		
 		aux(head);
 		clear();
+		gerarDoce();
 		insert();
 		system("cls");
 	}
@@ -123,7 +121,7 @@ void movimentar(){//mover
 void aux(Position p){
 	int i;
 	
-	snake.p = (Position *) realloc( snake.p, snake.size * sizeof(Position));//Realoca a mem√≥ria para aumentar o corpo da cobra
+	snake.p = (Position *) realloc( snake.p, snake.size * sizeof(Position));//Realoca a memÛria para aumentar o corpo da cobra
 	for(i = snake.size -1; i >= 0 ;i--){
         if(i == 0){
             snake.p[i] = p;
@@ -152,14 +150,14 @@ void imprimir(){//Imprime a matriz
     }
 }
 
-void gerarDoce(){//Gera um doce com coordenada aleat√≥ria
+void gerarDoce(){//Gera um doce com coordenada aleatÛria
 	int i;
 	
 	do{
 	   	srand(time(NULL));
      	for (i=0; i<1; i++){
-            candy.position.x = rand() %10; //Gera uma coordenada aleat√≥ria no eixo X
-            candy.position.y = rand() %10; //Gera uma coordenada aleat√≥ria no eixo Y
+            candy.position.x = rand() %10; //Gera uma coordenada aleatÛria no eixo X
+            candy.position.y = rand() %10; //Gera uma coordenada aleatÛria no eixo Y
     	}
 		if(mat[candy.position.y][candy.position.x] == ' '){
 			mat[candy.position.y][candy.position.x] = '$';
@@ -172,13 +170,12 @@ void gerarDoce(){//Gera um doce com coordenada aleat√≥ria
 
 void insert(){//Cadastra o corpo da cobra na matriz
 	int i;
-	
 	for(i = 0; i < snake.size; i++) {
 		mat[snake.p[i].x][snake.p[i].y] = '*';
 	}
 }
 
-int ponteiroNulo (Position *p){//Retorna verdadeiro ou falso para a aloca√ß√£o de mem√≥ria
+int ponteiroNulo (Position *p){//Retorna verdadeiro ou falso para a alocaÁ„o de memÛria
 	if(p == NULL) {
 		printf("Does not possible alloc");
 		exit(1);
