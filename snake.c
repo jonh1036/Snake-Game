@@ -20,7 +20,6 @@ typedef struct  {
 void inicializa();
 void imprimir();
 void gerarDoce();
-void movimentar();
 void direita();
 void esquerda();
 void cima();
@@ -32,6 +31,8 @@ void down();
 int ponteiroNulo(Position *p);
 void insertO();
 void clear();
+void movimentar(Position *p);
+void gameOp();
 
 int x = 2, y = 0;//Coordenadas da matriz
 char mat[MAT][MAT];//Criação da matriz
@@ -43,7 +44,7 @@ Candy candy;
 int main(void) {
     inicializa();//Inicialização da Matriz
     while(1){
-		movimentar();
+		void gameOp();
     }
     printf("\n\n");	
 	return 0;
@@ -96,6 +97,9 @@ void imprimir(){//Função que imprime a matriz completa
 void gerarDoce(){
 	int x1, y1,i;
 	
+	
+	
+	
 	do{
 	   	srand(time(NULL));
      	for (i=0; i<1; i++){
@@ -131,10 +135,11 @@ int ponteiroNulo (Position *p) {
 	return 0;
 }
 
-void movimentar(){//mover
+void gameOp() {
 	char tec;
 	
 	Position head = snake.p[0];
+	
 	
 	if (kbhit()){
 		tec = getch();
@@ -144,18 +149,18 @@ void movimentar(){//mover
 	}
 	system("cls");
 	switch(tecla){
-	    case 'a':	esquerda();//Movimentar para esquerda
+	    case 'a':	head.x--;//Movimentar para esquerda
 	    			candy.life--;
 	        break;
-	    case 'd':	direita();//Movimentar para direita
+	    case 'd':	head.x++;//Movimentar para direita
 	    			candy.life--;
 	        break;
 		case 'q':	exit(0);//Para encerrar o jogo
 	      	
-		case 's':	baixo();//Movimentar para baixo
+		case 's':	head.y++;//Movimentar para baixo
 					candy.life--;
 	    	break;
-	    case 'w':	cima();//Movimentar para cima
+	    case 'w':	head.y--;//Movimentar para cima
 	    			candy.life--;
 	        break;
 	    default: printf("Teclas permitidas: \nPara cima (tecla W), \nPara baixo (tecla S),\nPara a esquerda (tecla A)\nPara a direita (tecla D)\nPara sair (tecla Q)\n\n");
@@ -166,8 +171,42 @@ void movimentar(){//mover
     	mat[candy.position.y][candy.position.x] = ' ';
     	gerarDoce();
 	}
+	
+	if(head.x == candy.position.x && head.y == candy.position.y) {
+		snake.size++;
+		gerarDoce();
+	}
+	
+	movimentar(head);
+	
     
 	imprimir();
+	
+	
+}
+
+void movimentar(Position *p){//mover
+	snake.p = (Position *) realloc(snake.p, snake.size * sizeof(Position));
+	int i;
+	for(i = snake.size -1 ; i >= 0 ;i-- ){
+        if(i == 0)
+            snake.p[i] = *p;
+		else
+            snake.p[i] = snake.p[i - 1] ;
+    }
+	
+    for(i = 1; i < snake.size; i++){
+        if(snake.p[0].x == snake.p[i].x  &&  snake.p[0].y == snake.p[i].y){
+           	puts("GAMER OVER");
+			exit(0);
+        }
+    }
+
+    if( MAT < snake.p[0].x || snake.p[0].x < 0  ||  MAT < snake.p[0].y  ||  snake.p[0].y < 0 ){
+        	puts("GAMER OVER");
+			exit(0);
+    }
+	
 }
 
 
