@@ -30,8 +30,9 @@ void left();
 void up();
 void down();
 int ponteiroNulo(Position *p);
-void insertO();
+void insert();
 void clear();
+void aux(Position p);
 
 int x = 2, y = 0;//Coordenadas da matriz
 char mat[MAT][MAT];//Criação da matriz
@@ -39,39 +40,30 @@ char tecla = 'd';
 Snake snake;
 Candy candy;
 
-
 int main(void) {
-    inicializa();//Inicialização da Matriz
-    while(1){
-		movimentar();
-    }
+    
+	inicializa();//Inicialização da Matriz
+	movimentar();
+	
     printf("\n\n");	
 	return 0;
 }
 
 void inicializa(){//Função que inicializa a matriz no início do programa
-    int i, j;
+    int i;
+	
 	snake.size = 3; 
-	snake.p = (Position*) malloc(sizeof(Position) * snake.size);
+	snake.p = (Position*) malloc(snake.size * sizeof(Position));
 	ponteiroNulo(snake.p);
 	
 	for(i = 0; i < snake.size;i++) {
 		snake.p[i].y = snake.size - i - 1;
 		snake.p[i].x = 0;
 	}
-
-	for(i = 0; i < 10; i++ )
-        for(j = 0; j < 10; j++){
-        	if(i == 0 && (j>=0 && j<=2)){
-        		mat[i][j] = '*';//Origem
-			}
-			else
-				mat[i][j] = ' ';
-		}
+	
 	clear();
     gerarDoce();
-    insertO();
-	imprimir();
+    insert();
 }
 
 void clear(){
@@ -101,12 +93,9 @@ void gerarDoce(){
      	for (i=0; i<1; i++){
             candy.position.x = rand() %10; //Gera uma coordenada aleatória no eixo X
             candy.position.y = rand() %10; //Gera uma coordenada aleatória no eixo Y
-            //candy.position.x = x1;
-			//candy.position.y = y1;
     	}
 		if(mat[candy.position.y][candy.position.x] == ' '){
 			mat[candy.position.y][candy.position.x] = '$';
-			//insertO();
 			break;
 		}
 	}while(1);
@@ -114,9 +103,8 @@ void gerarDoce(){
 	candy.life = rand()%10;
 }
 
-void insertO() {
+void insert(){
 	int i;
-	//mat[candy.position.x][candy.position.y] = '$';//TALVEZ APAGAR
 	
 	for(i = 0; i < snake.size; i++) {
 		mat[snake.p[i].x][snake.p[i].y] = '*';
@@ -135,41 +123,67 @@ void movimentar(){//mover
 	char tec;
 	
 	Position head = snake.p[0];
-	
-	if (kbhit()){
-		tec = getch();
-		if( (tecla=='a' && tec != 'd') || (tecla=='d' && tec != 'a') || (tecla=='w' && tec != 's') || (tecla=='s' && tec != 'w') ){
-			tecla = tec;	
-		}
-	}
 	system("cls");
-	switch(tecla){
-	    case 'a':	esquerda();//Movimentar para esquerda
-	    			candy.life--;
-	        break;
-	    case 'd':	direita();//Movimentar para direita
-	    			candy.life--;
-	        break;
-		case 'q':	exit(0);//Para encerrar o jogo
-	      	
-		case 's':	baixo();//Movimentar para baixo
-					candy.life--;
-	    	break;
-	    case 'w':	cima();//Movimentar para cima
-	    			candy.life--;
-	        break;
-	    default: printf("Teclas permitidas: \nPara cima (tecla W), \nPara baixo (tecla S),\nPara a esquerda (tecla A)\nPara a direita (tecla D)\nPara sair (tecla Q)\n\n");
-	        break;
-       }
-    
-    if(candy.life == 0){
-    	mat[candy.position.y][candy.position.x] = ' ';
-    	gerarDoce();
+	while(1){
+		imprimir();
+		
+		if (kbhit()){
+			tec = getch();
+			if( (tecla=='a' && tec != 'd') || (tecla=='d' && tec != 'a') || (tecla=='w' && tec != 's') || (tecla=='s' && tec != 'w') ){
+				tecla = tec;	
+			}
+		}
+		switch(tecla){
+	    	case 'a':	//esquerda();//Movimentar para esquerda
+	    				head.y--;
+	    				candy.life--;
+	    	    break;
+	    	case 'd':	//direita();//Movimentar para direita
+	    				head.y++;
+						candy.life--;
+	    	    break;
+			case 'q':	exit(0);//Para encerrar o jogo
+	    	  	
+			case 's':	//baixo();//Movimentar para baixo
+						head.x++;
+						candy.life--;
+	    		break;
+	    	case 'w':	//cima();//Movimentar para cima
+	    				head.x--;
+						candy.life--;
+	    	    break;
+	    	default:	printf("Teclas permitidas: \nPara cima (tecla W), \nPara baixo (tecla S),\nPara a esquerda (tecla A)\nPara a direita (tecla D)\nPara sair (tecla Q)\n\n");
+	    	    break;
+		}
+		if(candy.life == 0){
+    		mat[candy.position.y][candy.position.x] = ' ';
+    		gerarDoce();
+		}
+	
+		if(head.x == candy.position.x  &&  head.y == candy.position.y ){
+    	   	snake.size++;
+    		gerarDoce();
+    	}
+	
+		aux(head);
+		clear();
+		insert();
+		system("cls");
 	}
-    
-	imprimir();
 }
 
+void aux(Position p){
+	int i;
+	
+	snake.p = (Position *) realloc( snake.p, snake.size * sizeof(Position));
+	for(i = snake.size -1; i >= 0 ;i--){
+        if(i == 0){
+            snake.p[i] = p;
+        }else{
+            snake.p[i] = snake.p[i - 1] ;
+        }
+    }
+}
 
 void direita(){//Função que move o '*' para a direita
     char aux;
