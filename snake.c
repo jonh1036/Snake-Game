@@ -31,6 +31,7 @@ void up();
 void down();
 int ponteiroNulo(Position *p);
 void insertO();
+void clear();
 
 int x = 2, y = 0;//Coordenadas da matriz
 char mat[MAT][MAT];//Criação da matriz
@@ -47,7 +48,6 @@ int main(void) {
     printf("\n\n");	
 	return 0;
 }
-
 
 void inicializa(){//Função que inicializa a matriz no início do programa
     int i, j;
@@ -68,9 +68,18 @@ void inicializa(){//Função que inicializa a matriz no início do programa
 			else
 				mat[i][j] = ' ';
 		}
-		
+	clear();
     gerarDoce();
+    insertO();
 	imprimir();
+}
+
+void clear(){
+    int i, j;
+	for(i = 0; i < MAT ; i++)
+        for(j = 0; j < MAT ; j++){
+            mat[i][j] = ' ';
+        }    
 }
 
 void imprimir(){//Função que imprime a matriz completa
@@ -90,13 +99,13 @@ void gerarDoce(){
 	do{
 	   	srand(time(NULL));
      	for (i=0; i<1; i++){
-            x1 = rand() %10; //Gera uma coordenada aleatória no eixo X
-            y1 = rand() %10; //Gera uma coordenada aleatória no eixo Y
-            candy.position.x = x1;
-			candy.position.y = y1;
+            candy.position.x = rand() %10; //Gera uma coordenada aleatória no eixo X
+            candy.position.y = rand() %10; //Gera uma coordenada aleatória no eixo Y
+            //candy.position.x = x1;
+			//candy.position.y = y1;
     	}
-		if(mat[y1][x1] == ' '){
-			mat[y1][x1] = '$';
+		if(mat[candy.position.y][candy.position.x] == ' '){
+			mat[candy.position.y][candy.position.x] = '$';
 			//insertO();
 			break;
 		}
@@ -105,7 +114,7 @@ void gerarDoce(){
 
 void insertO() {
 	int i;
-	mat[candy.position.x][candy.position.y] = '$';
+	//mat[candy.position.x][candy.position.y] = '$';//TALVEZ APAGAR
 	
 	for(i = 0; i < snake.size; i++) {
 		mat[snake.p[i].x][snake.p[i].y] = '*';
