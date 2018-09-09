@@ -110,6 +110,8 @@ void gerarDoce(){
 			break;
 		}
 	}while(1);
+	
+	candy.life = rand()%10;
 }
 
 void insertO() {
@@ -132,6 +134,8 @@ int ponteiroNulo (Position *p) {
 void movimentar(){//mover
 	char tec;
 	
+	Position head = snake.p[0];
+	
 	if (kbhit()){
 		tec = getch();
 		if( (tecla=='a' && tec != 'd') || (tecla=='d' && tec != 'a') || (tecla=='w' && tec != 's') || (tecla=='s' && tec != 'w') ){
@@ -140,19 +144,29 @@ void movimentar(){//mover
 	}
 	system("cls");
 	switch(tecla){
-	    case 'a': esquerda();//Movimentar para esquerda
+	    case 'a':	esquerda();//Movimentar para esquerda
+	    			candy.life--;
 	        break;
-	    case 'd': direita();//Movimentar para direita
+	    case 'd':	direita();//Movimentar para direita
+	    			candy.life--;
 	        break;
-		case 'q': exit(0);//Para encerrar o jogo
+		case 'q':	exit(0);//Para encerrar o jogo
 	      	
-		case 's': baixo();//Movimentar para baixo
+		case 's':	baixo();//Movimentar para baixo
+					candy.life--;
 	    	break;
-	    case 'w': cima();//Movimentar para cima
+	    case 'w':	cima();//Movimentar para cima
+	    			candy.life--;
 	        break;
 	    default: printf("Teclas permitidas: \nPara cima (tecla W), \nPara baixo (tecla S),\nPara a esquerda (tecla A)\nPara a direita (tecla D)\nPara sair (tecla Q)\n\n");
 	        break;
        }
+    
+    if(candy.life == 0){
+    	mat[candy.position.y][candy.position.x] = ' ';
+    	gerarDoce();
+	}
+    
 	imprimir();
 }
 
