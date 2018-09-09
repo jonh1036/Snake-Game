@@ -3,7 +3,6 @@
 #define MAT 10
 #define MAX_WORM 100
 
-
 typedef struct  {
     int x,y;
 } Position;
@@ -59,7 +58,7 @@ void inicializa(){//Função que inicializa a matriz no início do programa
 	for(i = 0; i < snake.size;i++) {
 		snake.p[i].y = snake.size - i - 1;
 		snake.p[i].x = 0;
-		}
+	}
 
 	for(i = 0; i < 10; i++ )
         for(j = 0; j < 10; j++){
@@ -69,7 +68,6 @@ void inicializa(){//Função que inicializa a matriz no início do programa
 			else
 				mat[i][j] = ' ';
 		}
-		
 		
     gerarDoce();
 	imprimir();
@@ -96,15 +94,13 @@ void gerarDoce(){
             y1 = rand() %10; //Gera uma coordenada aleatória no eixo Y
             candy.position.x = x1;
 			candy.position.y = y1;
-    }
+    	}
 		if(mat[y1][x1] == ' '){
 			mat[y1][x1] = '$';
 			//insertO();
 			break;
 		}
 	}while(1);
-
-	
 }
 
 void insertO() {
@@ -123,8 +119,8 @@ int ponteiroNulo (Position *p) {
 	}
 	return 0;
 }
-//mover
-void movimentar(){
+
+void movimentar(){//mover
 	char tec;
 	
 	if (kbhit()){
@@ -283,6 +279,3 @@ void down(){
 	mat[y+1][x] = aux;
 	y +=1;
 }
-
-
-
