@@ -2,21 +2,17 @@
 #include <stdlib.h>
 #define MAT 10
 #define MAX_WORM 100
-
 typedef struct  {
     int x,y;
-} Position;
-
+}Position;
 typedef struct  {
     int size;
     Position *p;
-} Snake;
-
+}Snake;
 typedef struct  {
     Position position;
     int life;
-} Candy;
-
+}Candy;
 void aux(Position p);
 void clear();
 void gerarDoce();
@@ -25,7 +21,6 @@ void inicializa();
 void insert();
 void movimentar();
 int ponteiroNulo(Position *p);
-
 char mat[MAT][MAT];//Criação da matriz
 char tecla = 'd';//Tecla de início de jogo
 Snake snake;//Variável global para a cobra
@@ -43,7 +38,7 @@ void inicializa(){//Inicializa a matriz no início do programa
 	snake.size = 3; 
 	snake.p = (Position*) malloc(snake.size * sizeof(Position));
 	ponteiroNulo(snake.p);
-	
+    
 	for(i = 0; i < snake.size;i++) {
 		snake.p[i].y = snake.size - i - 1;
 		snake.p[i].x = 0;
@@ -164,17 +159,14 @@ void gerarDoce(){//Gera um doce com coordenada aleatória
 			break;
 		}
 	}while(1);
-	
 	candy.life = rand()%10;//Define a vida do doce
 }
-
 void insert(){//Cadastra o corpo da cobra na matriz
 	int i;
 	for(i = 0; i < snake.size; i++) {
 		mat[snake.p[i].x][snake.p[i].y] = '*';
 	}
 }
-
 int ponteiroNulo (Position *p){//Retorna verdadeiro ou falso para a alocação de memória
 	if(p == NULL) {
 		printf("Does not possible alloc");
