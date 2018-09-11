@@ -41,8 +41,8 @@ void inicializa(){//Inicializa a matriz no início do programa
 	ponteiroNulo(snake.p);
     
 	for(i = 0; i < snake.size;i++) {
-		snake.p[i].y = snake.size - i - 1;
-		snake.p[i].x = 0;
+		snake.p[i].x = snake.size - i - 1;
+		snake.p[i].y = 0;
 	}
 	
 	clear();
@@ -71,19 +71,19 @@ void movimentar(){//mover
 			}
 		}
 		switch(tecla){
-	    	case 'a':	head.y--;
+	    	case 'a':	head.x--;
 	    				candy.life--;
 	    	    break;
-	    	case 'd':	head.y++;
+	    	case 'd':	head.x++;
 						candy.life--;
 	    	    break;
 			case 'q':	free(snake.p);
 						exit(0);//Para encerrar o jogo
 	    	  	
-			case 's':	head.x++;
+			case 's':	head.y++;
 						candy.life--;
 	    		break;
-	    	case 'w':	head.x--;
+	    	case 'w':	head.y--;
 						candy.life--;
 	    	    break;
 	    	default:
@@ -182,7 +182,7 @@ int valueRandom(int number) {
 void insert(){//Cadastra o corpo da cobra na matriz
 	int i;
 	for(i = 0; i < snake.size; i++) {
-		mat[snake.p[i].x][snake.p[i].y] = '*';
+		mat[snake.p[i].y][snake.p[i].x] = '*';
 	}
 }
 int ponteiroNulo (Position *p){//Retorna verdadeiro ou falso para a alocação de memória
