@@ -60,8 +60,14 @@ void movimentar(){//mover
 		
 		if (kbhit()){
 			tec = getch();
-			if((tecla=='a' && tec != 'd') || (tecla=='d' && tec != 'a') || (tecla=='w' && tec != 's') || (tecla=='s' && tec != 'w')){
+			if((tecla=='a' && tec != 'd') || (tecla=='d' && tec != 'a') || (tecla=='w' && tec != 's') || (tecla=='s' && tec != 'w') || (tec == 'q')){
+				if(tec != 'w' && tec != 's' && tec != 'd' && tec != 'a' && tec != 'q'){
+					printf("Teclas permitidas: \nPara cima (tecla W), \nPara baixo (tecla S),\nPara a esquerda (tecla A)\nPara a direita (tecla D)\nPara sair (tecla Q)\n\n");
+					sleep(2);
+				}
+				else{
 					tecla = tec;
+				}
 			}
 		}
 		switch(tecla){
@@ -79,7 +85,7 @@ void movimentar(){//mover
 	    	case 'w':	head.x--;
 						candy.life--;
 	    	    break;
-	    	default:	printf("Teclas permitidas: \nPara cima (tecla W), \nPara baixo (tecla S),\nPara a esquerda (tecla A)\nPara a direita (tecla D)\nPara sair (tecla Q)\n\n");
+	    	default:
 	    	    break;
 		}
 		if(candy.life == 0){//Caso a vida do doce acabe, será criado outro doce em outra posição aleatória na matriz
