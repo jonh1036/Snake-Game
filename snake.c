@@ -77,7 +77,8 @@ void movimentar(){//mover
 	    	case 'd':	head.y++;
 						candy.life--;
 	    	    break;
-			case 'q':	exit(0);//Para encerrar o jogo
+			case 'q':	free(snake.p);
+						exit(0);//Para encerrar o jogo
 	    	  	
 			case 's':	head.x++;
 						candy.life--;
