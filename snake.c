@@ -44,7 +44,6 @@ void inicializa(){//Inicializa a matriz no início do programa
 		snake.p[i].x = snake.size - i - 1;
 		snake.p[i].y = 0;
 	}
-	
 	clear();
     gerarDoce();
     insert();
@@ -95,14 +94,14 @@ void movimentar(){//mover
     	}
 		
 		if(head.x == 10 || head.x == -1 || head.y == 10 || head.y == -1){//Caso de teste para verificar se a cobra bateu em alguma extremidade da matriz
-			puts("\nGame Over PAREDE");
+			puts("\nGame Over");
 			free(snake.p);
 			exit(0);
 		}
 	
 		for(i = 1; i < snake.size; i++){//Verifica se bateu no próprio corpo
     	    if(snake.p[0].x == snake.p[i].x  &&  snake.p[0].y == snake.p[i].y){
-    	        puts("\nGame Over CORPO");
+    	        puts("\nGame Over");
 				free(snake.p);
 				exit(0);
     	    }
@@ -125,7 +124,6 @@ void aux(Position p){
             snake.p[i] = p;
 		else
             snake.p[i] = snake.p[i - 1] ;
-        
     }
 }
 
