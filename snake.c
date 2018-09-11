@@ -65,30 +65,25 @@ void movimentar(){//mover
 					printf("Teclas permitidas: \nPara cima (tecla W), \nPara baixo (tecla S),\nPara a esquerda (tecla A)\nPara a direita (tecla D)\nPara sair (tecla Q)\n\n");
 					sleep(2);
 				}
-				else{
+				else
 					tecla = tec;
-				}
 			}
 		}
 		switch(tecla){
 	    	case 'a':	head.x--;
-	    				candy.life--;
 	    	    break;
 	    	case 'd':	head.x++;
-						candy.life--;
 	    	    break;
 			case 'q':	free(snake.p);
 						exit(0);//Para encerrar o jogo
-	    	  	
 			case 's':	head.y++;
-						candy.life--;
 	    		break;
 	    	case 'w':	head.y--;
-						candy.life--;
 	    	    break;
 	    	default:
 	    	    break;
 		}
+		candy.life--;
 		if(candy.life == 0){//Caso a vida do doce acabe, será criado outro doce em outra posição aleatória na matriz
     		mat[candy.position.y][candy.position.x] = ' ';
     		gerarDoce();
@@ -126,21 +121,19 @@ void aux(Position p){
 	
 	snake.p = (Position *) realloc( snake.p, snake.size * sizeof(Position));//Realoca a memória para aumentar o corpo da cobra
 	for(i = snake.size -1; i >= 0 ;i--){
-        if(i == 0){
+        if(i == 0)
             snake.p[i] = p;
-        }
-		else{
+		else
             snake.p[i] = snake.p[i - 1] ;
-        }
+        
     }
 }
 
 void clear(){//Limpa a matriz
     int i, j;
 	for(i = 0; i < MAT ; i++)
-        for(j = 0; j < MAT ; j++){
-            mat[i][j] = ' ';
-        }    
+        for(j = 0; j < MAT ; j++)
+            mat[i][j] = ' ';   
 }
 
 void imprimir(){//Imprime a matriz
@@ -155,7 +148,7 @@ void imprimir(){//Imprime a matriz
 }
 
 void gerarDoce(){//Gera um doce com coordenada aleatória
-	int i;
+	int i, randomNumber;
 	
 	do{
 	   	srand(time(NULL));
@@ -168,22 +161,19 @@ void gerarDoce(){//Gera um doce com coordenada aleatória
 			break;
 		}
 	}while(1);
-	int randomNumber;
 	candy.life = valueRandom(randomNumber);//Define a vida do doce
 }
 
 int valueRandom(int number) {
 	number = rand()%20;
-	if(number >= 5) {
+	if(number >= 5)
 		return number;
-	}
 }
 
 void insert(){//Cadastra o corpo da cobra na matriz
 	int i;
-	for(i = 0; i < snake.size; i++) {
+	for(i = 0; i < snake.size; i++) 
 		mat[snake.p[i].y][snake.p[i].x] = '*';
-	}
 }
 int ponteiroNulo (Position *p){//Retorna verdadeiro ou falso para a alocação de memória
 	if(p == NULL) {
