@@ -130,7 +130,7 @@ void gerarDoce(){//Gera um doce com coordenada aleatória
             candy.position.x = rand() %10; //Gera uma coordenada aleatória no eixo X
             candy.position.y = rand() %10; //Gera uma coordenada aleatória no eixo Y
     	}
-		if(mat[candy.position.y][candy.position.x] == ' '){
+		if((candy.position.x != snake.p[0].x) && (candy.position.y != snake.p[0].y)){
 			mat[candy.position.y][candy.position.x] = '$';
 			break;
 		}
