@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
 #define MAT 10
 #define MAX_WORM 100
@@ -59,8 +60,8 @@ void movimentar(){//mover
 		
 		if (kbhit()){
 			tec = getch();
-			if( (tecla=='a' && tec != 'd') || (tecla=='d' && tec != 'a') || (tecla=='w' && tec != 's') || (tecla=='s' && tec != 'w') ){
-				tecla = tec;	
+			if((tecla=='a' && tec != 'd') || (tecla=='d' && tec != 'a') || (tecla=='w' && tec != 's') || (tecla=='s' && tec != 'w')){
+					tecla = tec;
 			}
 		}
 		switch(tecla){
@@ -78,7 +79,7 @@ void movimentar(){//mover
 	    	case 'w':	head.x--;
 						candy.life--;
 	    	    break;
-	    	default: printf("Teclas permitidas: \nPara cima (tecla W), \nPara baixo (tecla S),\nPara a esquerda (tecla A)\nPara a direita (tecla D)\nPara sair (tecla Q)\n\n");
+	    	default:	printf("Teclas permitidas: \nPara cima (tecla W), \nPara baixo (tecla S),\nPara a esquerda (tecla A)\nPara a direita (tecla D)\nPara sair (tecla Q)\n\n");
 	    	    break;
 		}
 		if(candy.life == 0){//Caso a vida do doce acabe, será criado outro doce em outra posição aleatória na matriz
@@ -92,19 +93,19 @@ void movimentar(){//mover
     	}
 		
 		if(head.x == 10 || head.x == -1 || head.y == 10 || head.y == -1){//Caso de teste para verificar se a cobra bateu em alguma extremidade da matriz
-			puts("\nGame Over");
+			puts("\nGame Over PAREDE");
 			free(snake.p);
 			exit(0);
 		}
 	
 		for(i = 1; i < snake.size; i++){//Verifica se bateu no próprio corpo
     	    if(snake.p[0].x == snake.p[i].x  &&  snake.p[0].y == snake.p[i].y){
-    	        puts("\nGame Over");
+    	        puts("\nGame Over CORPO");
 				free(snake.p);
 				exit(0);
     	    }
     	}
-		
+    	usleep(100000);
 		aux(head);
 		clear();
 		gerarDoce();
@@ -120,7 +121,8 @@ void aux(Position p){
 	for(i = snake.size -1; i >= 0 ;i--){
         if(i == 0){
             snake.p[i] = p;
-        }else{
+        }
+		else{
             snake.p[i] = snake.p[i - 1] ;
         }
     }
@@ -169,7 +171,7 @@ void insert(){//Cadastra o corpo da cobra na matriz
 }
 int ponteiroNulo (Position *p){//Retorna verdadeiro ou falso para a alocação de memória
 	if(p == NULL) {
-		printf("Does not possible alloc");
+		printf("Doesn't possible alloc");
 		exit(1);
 	}
 	return 0;
