@@ -168,8 +168,17 @@ void gerarDoce(){//Gera um doce com coordenada aleatória
 			break;
 		}
 	}while(1);
-	candy.life = rand()%10;//Define a vida do doce
+	int randomNumber;
+	candy.life = valueRandom(randomNumber);//Define a vida do doce
 }
+
+int valueRandom(int number) {
+	number = rand()%20;
+	if(number >= 5) {
+		return number;
+	}
+}
+
 void insert(){//Cadastra o corpo da cobra na matriz
 	int i;
 	for(i = 0; i < snake.size; i++) {
