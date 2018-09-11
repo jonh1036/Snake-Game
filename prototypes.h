@@ -1,17 +1,23 @@
-//  Created by Jonathan Pinho and Vinicius Mangueira 10/07/2018.
-//  Aquivo onde ficará as protótipos de funções e structs
+#define MAT 10
+#define MAX_WORM 100
 
-
-typedef struct Position {
+typedef struct  {
     int x,y;
-};
-
-struct Snake {
+}Position;
+typedef struct  {
     int size;
-    struct Position bodySize[51];
-};
-
-struct Candy {
-    struct Position *CandyPosition;
+    Position *p;
+}Snake;
+typedef struct  {
+    Position position;
     int life;
-};
+}Candy;
+
+void aux(Position p);
+void clear();
+void gerarDoce();
+void imprimir();
+void inicializa();
+void insert();
+void movimentar();
+int ponteiroNulo(Position *p);
