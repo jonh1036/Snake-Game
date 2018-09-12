@@ -21,3 +21,5 @@ void inicializa();
 void insert();
 void movimentar();
 int ponteiroNulo(Position *p);
+char getch();
+int valueRandom(int number);
