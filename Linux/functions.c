@@ -89,7 +89,7 @@ void movimentar(){//mover
 		clear();
 		gerarDoce();
 		insert();
-		system("cls");
+        system("clear");
 	}
 }
 
