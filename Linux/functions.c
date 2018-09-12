@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <termios.h>
 #include "prototypes.h"
+#include "kbhit.c"
 #define MAT 10
 #define MAX_WORM 100
 
