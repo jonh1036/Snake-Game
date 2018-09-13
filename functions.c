@@ -22,8 +22,6 @@ void inicializa(){//Inicializa a matriz no início do programa
 
 void movimentar(){//mover
 	char tec;
-	int i;
-	
 	Position head = snake.p[0];
 	while(1){
 		imprimir();
@@ -54,6 +52,18 @@ void movimentar(){//mover
 	    	    break;
 		}
 		candy.life--;
+		colider(head);
+    	usleep(100000);
+		aux(head);
+		clear();
+		gerarDoce();
+		insert();
+		system("cls");
+	}
+}
+
+void colider(Position head) {
+		int i;
 		if(candy.life == 0){//Caso a vida do doce acabe, será criado outro doce em outra posição aleatória na matriz
     		mat[candy.position.y][candy.position.x] = ' ';
     		gerarDoce();
@@ -77,14 +87,8 @@ void movimentar(){//mover
 				exit(0);
     	    }
     	}
-    	usleep(100000);
-		aux(head);
-		clear();
-		gerarDoce();
-		insert();
-		system("cls");
-	}
 }
+
 
 void aux(Position p){
 	int i;

@@ -16,6 +16,7 @@ typedef struct  {
     int life;
 }Candy;
 
+void colider(Position head); 
 void aux(Position p);
 void clear();
 void gerarDoce();
