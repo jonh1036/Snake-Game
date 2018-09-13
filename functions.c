@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
 #include "prototypes.h"
-#define MAT 10
-#define MAX_WORM 100
 
 char mat[MAT][MAT];//Criação da matriz
 char tecla = 'd';//Tecla de início de jogo

@@ -1,5 +1,8 @@
 #define MAT 10
 #define MAX_WORM 100
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
 
 typedef struct  {
     int x,y;
