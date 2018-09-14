@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
 #include "prototypes.h"
-#define MAT 10
-#define MAX_WORM 100
 
 char mat[MAT][MAT];//Criação da matriz
 char tecla = 'd';//Tecla de início de jogo
@@ -27,8 +22,6 @@ void inicializa(){//Inicializa a matriz no início do programa
 
 void movimentar(){//mover
 	char tec;
-	int i;
-	
 	Position head = snake.p[0];
 	while(1){
 		imprimir();
@@ -59,6 +52,18 @@ void movimentar(){//mover
 	    	    break;
 		}
 		candy.life--;
+		colider(head);
+    	usleep(125000);//0,125 segundos de delay
+		aux(head);
+		clear();
+		gerarDoce();
+		insert();
+		system("cls");
+	}
+}
+
+void colider(Position head) {
+		int i;
 		if(candy.life == 0){//Caso a vida do doce acabe, será criado outro doce em outra posição aleatória na matriz
     		mat[candy.position.y][candy.position.x] = ' ';
     		gerarDoce();
@@ -76,19 +81,12 @@ void movimentar(){//mover
 		}
 	
 		for(i = 1; i < snake.size; i++){//Verifica se bateu no próprio corpo
-    	    if(snake.p[0].x == snake.p[i].x  &&  snake.p[0].y == snake.p[i].y){
+    	    if(head.x == snake.p[i].x  &&  head.y == snake.p[i].y){
     	        puts("\nGame Over");
 				free(snake.p);
 				exit(0);
     	    }
     	}
-    	usleep(100000);
-		aux(head);
-		clear();
-		gerarDoce();
-		insert();
-		system("cls");
-	}
 }
 
 void aux(Position p){
@@ -122,7 +120,7 @@ void imprimir(){//Imprime a matriz
 }
 
 void gerarDoce(){//Gera um doce com coordenada aleatória
-	int i, randomNumber;
+	int i;
 	
 	do{
 	   	srand(time(NULL));
@@ -130,18 +128,12 @@ void gerarDoce(){//Gera um doce com coordenada aleatória
             candy.position.x = rand() %10; //Gera uma coordenada aleatória no eixo X
             candy.position.y = rand() %10; //Gera uma coordenada aleatória no eixo Y
     	}
-		if((candy.position.x != snake.p[0].x) && (candy.position.y != snake.p[0].y)){
+		if(mat[candy.position.y][candy.position.x] == ' '){
 			mat[candy.position.y][candy.position.x] = '$';
 			break;
 		}
 	}while(1);
-	candy.life = valueRandom(randomNumber);//Define a vida do doce
-}
-
-int valueRandom(int number) {
-	number = rand()%20;
-	if(number >= 5)
-		return number;
+	candy.life = abs(snake.p[0].y - candy.position.y) + abs(snake.p[0].x - candy.position.x) + 1;//Define a vida do doce
 }
 
 void insert(){//Cadastra o corpo da cobra na matriz
