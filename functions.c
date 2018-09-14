@@ -81,14 +81,13 @@ void colider(Position head) {
 		}
 	
 		for(i = 1; i < snake.size; i++){//Verifica se bateu no próprio corpo
-    	    if(snake.p[0].x == snake.p[i].x  &&  snake.p[0].y == snake.p[i].y){
+    	    if(head.x == snake.p[i].x  &&  head.y == snake.p[i].y){
     	        puts("\nGame Over");
 				free(snake.p);
 				exit(0);
     	    }
     	}
 }
-
 
 void aux(Position p){
 	int i;
