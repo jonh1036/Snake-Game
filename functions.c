@@ -53,7 +53,7 @@ void movimentar(){//mover
 		}
 		candy.life--;
 		colider(head);
-    	usleep(100000);
+    	usleep(100000);//0,1 segundos de delay
 		aux(head);
 		clear();
 		gerarDoce();
