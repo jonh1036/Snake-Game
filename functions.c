@@ -133,7 +133,7 @@ void gerarDoce(){//Gera um doce com coordenada aleatória
 			break;
 		}
 	}while(1);
-	candy.life = abs(snake.p[0].y - candy.position.y) + abs(snake.p[0].x - candy.position.x) + 1;//Define a vida do doce
+	candy.life = abs(snake.p[0].y - candy.position.y) + abs(snake.p[0].x - candy.position.x) + 1;//Define a vida do doce pela quantidade de movimentos que faltam pra cobra chegar
 }
 
 void insert(){//Cadastra o corpo da cobra na matriz
