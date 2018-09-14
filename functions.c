@@ -53,10 +53,10 @@ void movimentar(){//mover
 		}
 		candy.life--;
 		colider(head);
-    usleep(125000);//0,125 segundos de delay
-    aux(head);
+    	usleep(125000);//0,125 segundos de delay
+    	aux(head);
 		clear();
-		gerarDoce();
+		mat[candy.position.y][candy.position.x] = '$';
 		insert();
 		system("cls");
 	}
