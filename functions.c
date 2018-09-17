@@ -52,9 +52,13 @@ void movimentar(){//mover
 	    	    break;
 		}
 		candy.life--;
+		if(candy.life == 0){//Caso a vida do doce acabe, será criado outro doce em outra posição aleatória na matriz
+    		mat[candy.position.y][candy.position.x] = ' ';
+    		gerarDoce();
+		}
 		colider(head);
     	usleep(125000);//0,125 segundos de delay
-    	aux(head);
+    	crescer(head);
 		clear();
 		mat[candy.position.y][candy.position.x] = '$';
 		insert();
@@ -64,17 +68,14 @@ void movimentar(){//mover
 
 void colider(Position head) {
 		int i;
-		if(candy.life == 0){//Caso a vida do doce acabe, será criado outro doce em outra posição aleatória na matriz
-    		mat[candy.position.y][candy.position.x] = ' ';
-    		gerarDoce();
-		}
+
 	
 		if(head.x == candy.position.x  &&  head.y == candy.position.y ){//Caso de teste para a colisão da cobra com um doce
     	   	snake.size++;
     		gerarDoce();
     	}
 		
-		if(head.x == 10 || head.x == -1 || head.y == 10 || head.y == -1){//Caso de teste para verificar se a cobra bateu em alguma extremidade da matriz
+		if(head.x == MAT || head.x == -1 || head.y == MAT || head.y == -1){//Caso de teste para verificar se a cobra bateu em alguma extremidade da matriz
 			puts("\nGame Over");
 			free(snake.p);
 			exit(0);
@@ -89,7 +90,7 @@ void colider(Position head) {
     	}
 }
 
-void aux(Position p){
+void crescer(Position p){
 	int i;
 	
 	snake.p = (Position *) realloc( snake.p, snake.size * sizeof(Position));//Realoca a memória para aumentar o corpo da cobra
@@ -124,10 +125,8 @@ void gerarDoce(){//Gera um doce com coordenada aleatória
 	
 	do{
 	   	srand(time(NULL));
-     	for (i=0; i<1; i++){
-            candy.position.x = rand() %10; //Gera uma coordenada aleatória no eixo X
-            candy.position.y = rand() %10; //Gera uma coordenada aleatória no eixo Y
-    	}
+        candy.position.x = rand() %10; //Gera uma coordenada aleatória no eixo X
+        candy.position.y = rand() %10; //Gera uma coordenada aleatória no eixo Y
 		if(mat[candy.position.y][candy.position.x] == ' '){
 			mat[candy.position.y][candy.position.x] = '$';
 			break;

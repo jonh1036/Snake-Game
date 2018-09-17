@@ -2,6 +2,6 @@
 int main(void) {
 	inicializa();
 	movimentar();
-    printf("\n\n");	
+    printf("\n\n");
 	return 0;
 }
