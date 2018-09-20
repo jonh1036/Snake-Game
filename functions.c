@@ -10,19 +10,11 @@ void gameOptions() {
 	int op;
 	printf("Welcome to the Snake Game \n Press 1 to start the new Game \n Press 2 to continue game \n");
 	scanf("%d",&op);
-	
 	switch(op) {
-		case 1: inicializa();
-				movimentar();
+		case 1: inicializa();		
 		case 2: printf("Ok vou implementar\n");
 	}
-	
-	
 }
-
-
-
-
 void inicializa(){//Inicializa a matriz no início do programa
     int i;
 	snake.size = 3; 
@@ -36,6 +28,7 @@ void inicializa(){//Inicializa a matriz no início do programa
 	clear();
     gerarDoce();
     insert();
+    movimentar();
 }
 
 void movimentar(){//mover
@@ -166,4 +159,9 @@ int ponteiroNulo (Position *p){//Retorna verdadeiro ou falso para a alocação d
 		exit(1);
 	}
 	return 0;
+}
+
+
+void fileHelper() {
+	
 }
