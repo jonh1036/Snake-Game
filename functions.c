@@ -5,6 +5,24 @@ char tecla = 'd';//Tecla de início de jogo
 Snake snake;//Variável global para a cobra
 Candy candy;//Variável global para o doce
 
+
+void gameOptions() {
+	int op;
+	printf("Welcome to the Snake Game \n Press 1 to start the new Game \n Press 2 to continue game \n");
+	scanf("%d",&op);
+	
+	switch(op) {
+		case 1: inicializa();
+				movimentar();
+		case 2: printf("Ok vou implementar\n");
+	}
+	
+	
+}
+
+
+
+
 void inicializa(){//Inicializa a matriz no início do programa
     int i;
 	snake.size = 3; 
@@ -48,6 +66,8 @@ void movimentar(){//mover
 	    		break;
 	    	case 'w':	head.y--;
 	    	    break;
+	    	case 'r': free(snake.p);
+	    				printf("Funciona");
 	    	default:
 	    	    break;
 		}
