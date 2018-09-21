@@ -14,7 +14,9 @@ void gameOptions() {
 	switch(op) {
 		case 1: inicializa();
 				fileHelperW(); //Inciará com as configurações inciais e insere no arquivo	
-		case 2: fileHelperL();	
+		case 2: inicializa();
+				fileHelperL();	
+				//Falta inicializar com as posições
 	}
 }
 void inicializa(){//Inicializa a matriz no inÃ­cio do programa
@@ -180,7 +182,6 @@ void fileHelperL() { //Ler do arquivo... Posteriormente definir um aquivo C de h
 	arq = fopen("settings.txt", "r");
 	verifyArq = (arq == NULL) ? 1 : 0;
 	if(verifyArq == 1) { printf("Problemas em abrir o arquivo"); return; }
-	
 	fscanf(arq, "%d %d %d %d %d",candy.position.x, candy.position.y, candy.life, *snake.p, snake.size); //Pega os valores que o arquivo contém e coloca nas variáveis
 	printf("%d %d %d",candy.position.x, candy.position.y, candy.life);
 	
