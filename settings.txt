@@ -1,1 +1,2 @@
-8 6 7
+Posição X: 3 Posição Y: 0 Vida do Doce: 6
+Posição X: 3 Posição Y: 3 Tamanho da Cobra: 5

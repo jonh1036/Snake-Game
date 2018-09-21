@@ -169,8 +169,8 @@ void fileHelper() {
 
 	arq = fopen("settings.txt", "wt");  // Cria um arquivo texto para gravação
 	
-	fprintf(arq, "%d %d %d",candy.position.x,candy.position.y,candy.life); //Gravando estado do doce, posição X,Y e vida do doce respectivamente
-	
+	fprintf(arq, "Posição X: %d Posição Y: %d Vida do Doce: %d\n",candy.position.x,candy.position.y,candy.life); //Gravando estado do doce, posição X,Y e vida do doce respectivamente
+	fprintf(arq, "Posição X: %d Posição Y: %d Tamanho da Cobra: %d",*snake.p,*snake.p,snake.size);
 	
 	if (arq == NULL) {	printf("Problemas na CRIACAO do arquivo\n"); return;}
 
