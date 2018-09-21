@@ -25,3 +25,4 @@ void inicializa();
 void insert();
 void movimentar();
 int ponteiroNulo(Position *p);
+void fileHelper();

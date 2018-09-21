@@ -12,7 +12,7 @@ void gameOptions() {
 	scanf("%d",&op);
 	switch(op) {
 		case 1: inicializa();		
-		case 2: printf("Ok vou implementar\n");
+		case 2: printf("Ok vou implementar\n");		
 	}
 }
 void inicializa(){//Inicializa a matriz no in√≠cio do programa
@@ -61,6 +61,7 @@ void movimentar(){//mover
 	    	    break;
 	    	case 'r': free(snake.p);
 	    				printf("Funciona");
+	    				fileHelper();
 	    	default:
 	    	    break;
 		}
@@ -163,5 +164,20 @@ int ponteiroNulo (Position *p){//Retorna verdadeiro ou falso para a aloca√ß√£o d
 
 
 void fileHelper() {
+char Str[100];
+FILE *arq;
+int result = 0;
+
+ arq = fopen("ArqGrav.txt", "wt");  // Cria um arquivo texto para gravaÁ„o
+	if (arq == NULL) // Se n„o conseguiu criar
+	{	
+   printf("Problemas na CRIACAO do arquivo\n");
+   return;
+	}
+ 	strcpy(Str,"Linha de teste");
+	result = fputs(Str, arq);
+	if (result == EOF)
+    printf("Erro na Gravacao\n");
+ 	fclose(arq);
 	
 }

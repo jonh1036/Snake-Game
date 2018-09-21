@@ -1,4 +1,4 @@
 #include "functions.c"
-void main(void) {
+void main() {
 	gameOptions();
 }//Criando branch pra trabalhar com arquivos
