@@ -168,10 +168,13 @@ void fileHelper() {
 	FILE *arq;
 
 	arq = fopen("settings.txt", "wt");  // Cria um arquivo texto para gravação
+	
+	fprintf(arq, "%d %d %d",candy.position.x,candy.position.y,candy.life); //Gravando estado do doce, posição X,Y e vida do doce respectivamente
+	
+	
 	if (arq == NULL) {	printf("Problemas na CRIACAO do arquivo\n"); return;}
 
+
  	fclose(arq);
-	
-	
 	
 }
