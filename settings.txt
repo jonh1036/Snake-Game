@@ -1,2 +1,1 @@
-Posição X: 5 Posição Y: 9 Vida do Doce: 2
-Posição da cobra: 2 Tamanho da Cobra: 5
+1 4 8 8 10

@@ -13,8 +13,8 @@ void gameOptions() {
 	scanf("%d",&op);
 	switch(op) {
 		case 1: inicializa();
-				fileHelper(); //Inciará com as configurações inciais e insere no arquivo	
-		case 2: printf("Ok vou implementar\n");		
+				fileHelperW(); //Inciará com as configurações inciais e insere no arquivo	
+		case 2: fileHelperL();	
 	}
 }
 void inicializa(){//Inicializa a matriz no inÃ­cio do programa
@@ -61,7 +61,7 @@ void movimentar(){//mover
 	    		break;
 	    	case 'w':	head.y--;
 	    	    break;
-	    	case 'r': fileHelper();
+	    	case 'r': fileHelperW();
 	    			  free(snake.p);
 	    			  break;
 	    	default:
@@ -163,12 +163,25 @@ int ponteiroNulo (Position *p){//Retorna verdadeiro ou falso para a alocaÃ§Ã£o d
 	}
 	return 0;
 }
-void fileHelper() {
+void fileHelperW() { //Helper de file, para escrever as posições do doce e cobra respectivamente no arquivo settings
 	FILE *arq;
 	arq = fopen("settings.txt", "wt");  // Cria um arquivo texto para gravação
 	if (arq == NULL) {	printf("Problemas na CRIACAO do arquivo\n"); return;}
-	fprintf(arq, "Posição X: %d Posição Y: %d Vida do Doce: %d\n",candy.position.x,candy.position.y,candy.life); //Gravando estado do doce, posição X,Y e vida do doce respectivamente
-	fprintf(arq, "Posição da cobra: %d Tamanho da Cobra: %d",*snake.p,snake.size);
+	fprintf(arq, "%d %d %d ",candy.position.x,candy.position.y,candy.life); //Gravando estado do doce, posição X,Y e vida do doce respectivamente
+	fprintf(arq, "%d %d",*snake.p,snake.size);
  	fclose(arq);
+	
+}
+
+
+void fileHelperL() { //Ler do arquivo... Posteriormente definir um aquivo C de helper pra manipular só o aquivo
+	FILE *arq;
+	int verifyArq;
+	arq = fopen("settings.txt", "r");
+	verifyArq = (arq == NULL) ? 1 : 0;
+	if(verifyArq == 1) { printf("Problemas em abrir o arquivo"); return; }
+	
+	fscanf(arq, "%d %d %d %d %d",candy.position.x, candy.position.y, candy.life, *snake.p, snake.size); //Pega os valores que o arquivo contém e coloca nas variáveis
+	printf("%d %d %d",candy.position.x, candy.position.y, candy.life);
 	
 }
