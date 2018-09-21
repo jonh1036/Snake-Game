@@ -12,7 +12,8 @@ void gameOptions() {
 	printf("Welcome to the Snake Game \n Press 1 to start the new Game \n Press 2 to continue game \n");
 	scanf("%d",&op);
 	switch(op) {
-		case 1: inicializa();		
+		case 1: inicializa();
+				fileHelper(); //Inciará com as configurações inciais e insere no arquivo	
 		case 2: printf("Ok vou implementar\n");		
 	}
 }
@@ -162,19 +163,12 @@ int ponteiroNulo (Position *p){//Retorna verdadeiro ou falso para a alocaÃ§Ã£o d
 	}
 	return 0;
 }
-
-
 void fileHelper() {
 	FILE *arq;
-
 	arq = fopen("settings.txt", "wt");  // Cria um arquivo texto para gravação
-	
-	fprintf(arq, "Posição X: %d Posição Y: %d Vida do Doce: %d\n",candy.position.x,candy.position.y,candy.life); //Gravando estado do doce, posição X,Y e vida do doce respectivamente
-	fprintf(arq, "Posição X: %d Posição Y: %d Tamanho da Cobra: %d",*snake.p,*snake.p,snake.size);
-	
 	if (arq == NULL) {	printf("Problemas na CRIACAO do arquivo\n"); return;}
-
-
+	fprintf(arq, "Posição X: %d Posição Y: %d Vida do Doce: %d\n",candy.position.x,candy.position.y,candy.life); //Gravando estado do doce, posição X,Y e vida do doce respectivamente
+	fprintf(arq, "Posição da cobra: %d Tamanho da Cobra: %d",*snake.p,snake.size);
  	fclose(arq);
 	
 }
