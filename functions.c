@@ -1,5 +1,6 @@
 #include "prototypes.h"
 
+
 char mat[MAT][MAT];//Cria√ß√£o da matriz
 char tecla = 'd';//Tecla de in√≠cio de jogo
 Snake snake;//Vari√°vel global para a cobra
@@ -40,7 +41,7 @@ void movimentar(){//mover
 		if (kbhit()){
 			tec = getch();
 			if((tecla=='a' && tec != 'd') || (tecla=='d' && tec != 'a') || (tecla=='w' && tec != 's') || (tecla=='s' && tec != 'w') || (tec == 'q')){
-				if(tec != 'w' && tec != 's' && tec != 'd' && tec != 'a' && tec != 'q'){
+				if(tec != 'w' && tec != 's' && tec != 'd' && tec != 'a' && tec != 'q' && tec != 'r'){
 					printf("Teclas permitidas: \nPara cima (tecla W), \nPara baixo (tecla S),\nPara a esquerda (tecla A)\nPara a direita (tecla D)\nPara sair (tecla Q)\n\n");
 					sleep(2);
 				}
@@ -59,9 +60,9 @@ void movimentar(){//mover
 	    		break;
 	    	case 'w':	head.y--;
 	    	    break;
-	    	case 'r': free(snake.p);
-	    				printf("Funciona");
-	    				fileHelper();
+	    	case 'r': fileHelper();
+	    			  free(snake.p);
+	    			  break;
 	    	default:
 	    	    break;
 		}
@@ -164,20 +165,13 @@ int ponteiroNulo (Position *p){//Retorna verdadeiro ou falso para a aloca√ß√£o d
 
 
 void fileHelper() {
-char Str[100];
-FILE *arq;
-int result = 0;
+	FILE *arq;
 
- arq = fopen("ArqGrav.txt", "wt");  // Cria um arquivo texto para gravaÁ„o
-	if (arq == NULL) // Se n„o conseguiu criar
-	{	
-   printf("Problemas na CRIACAO do arquivo\n");
-   return;
-	}
- 	strcpy(Str,"Linha de teste");
-	result = fputs(Str, arq);
-	if (result == EOF)
-    printf("Erro na Gravacao\n");
+	arq = fopen("settings.txt", "wt");  // Cria um arquivo texto para gravaÁ„o
+	if (arq == NULL) {	printf("Problemas na CRIACAO do arquivo\n"); return;}
+
  	fclose(arq);
+	
+	
 	
 }
