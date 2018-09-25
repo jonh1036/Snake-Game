@@ -1,11 +1,9 @@
 #include "prototypes.h"
 
-
 char mat[MAT][MAT];//Cria√ß√£o da matriz
 char tecla = 'd';//Tecla de in√≠cio de jogo
 Snake snake;//Vari√°vel global para a cobra
 Candy candy;//Vari√°vel global para o doce
-
 
 void gameOptions() {
 	int op;
@@ -53,16 +51,27 @@ void movimentar(){//mover
 			}
 		}
 		switch(tecla){
+            case 'A':
 	    	case 'a':	head.x--;
 	    	    break;
+            
+            case 'D':
 	    	case 'd':	head.x++;
 	    	    break;
+            
+            case 'Q':
 			case 'q':	free(snake.p);
 						exit(0);//Para encerrar o jogo
-			case 's':	head.y++;
+			
+            case 'S':
+            case 's':	head.y++;
 	    		break;
-	    	case 'w':	head.y--;
+	    	
+            case 'W':
+            case 'w':	head.y--;
 	    	    break;
+            
+            case 'R':
 	    	case 'r': fileHelperW();
 	    			  free(snake.p);
 	    			  break;
@@ -86,7 +95,6 @@ void movimentar(){//mover
 
 void colider(Position head) {
 		int i;
-
 	
 		if(head.x == candy.position.x  &&  head.y == candy.position.y ){//Caso de teste para a colis√£o da cobra com um doce
     	   	snake.size++;
@@ -131,9 +139,8 @@ void imprimir(){//Imprime a matriz
     int i, j;
     for(i = 0; i < 10; i++){
         printf("|");
-        for(j = 0; j < 10; j++){
+        for(j = 0; j < 10; j++)
             printf("%c",mat[i][j]);
-        }
         printf("|\n");
     }
 }
@@ -158,6 +165,7 @@ void insert(){//Cadastra o corpo da cobra na matriz
 	for(i = 0; i < snake.size; i++) 
 		mat[snake.p[i].y][snake.p[i].x] = '*';
 }
+
 int ponteiroNulo (Position *p){//Retorna verdadeiro ou falso para a aloca√ß√£o de mem√≥ria
 	if(p == NULL) {
 		printf("Doesn't possible alloc");
@@ -165,6 +173,7 @@ int ponteiroNulo (Position *p){//Retorna verdadeiro ou falso para a aloca√ß√£o d
 	}
 	return 0;
 }
+
 void fileHelperW() { //Helper de file, para escrever as posiÁıes do doce e cobra respectivamente no arquivo settings
 	FILE *arq;
 	arq = fopen("settings.txt", "wt");  // Cria um arquivo texto para gravaÁ„o
@@ -172,9 +181,7 @@ void fileHelperW() { //Helper de file, para escrever as posiÁıes do doce e cobra
 	fprintf(arq, "%d %d %d ",candy.position.x,candy.position.y,candy.life); //Gravando estado do doce, posiÁ„o X,Y e vida do doce respectivamente
 	fprintf(arq, "%d %d",*snake.p,snake.size);
  	fclose(arq);
-	
 }
-
 
 void fileHelperL() { //Ler do arquivo... Posteriormente definir um aquivo C de helper pra manipular sÛ o aquivo
 	FILE *arq;
