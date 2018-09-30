@@ -108,7 +108,6 @@ void movimentar(){//mover
             
             case 'R':
 	    	case 'r': //fileHelperW();
-	    			  //free(snake.p);
 	    			  break;
 	    	default:
 	    	    break;
