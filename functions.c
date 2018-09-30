@@ -11,12 +11,40 @@ void gameOptions() {
 	scanf("%d",&op);
 	switch(op) {
 		case 1: inicializa();
-				fileHelperW(); //Inciará com as configurações inciais e insere no arquivo	
-		case 2: inicializa();
-				fileHelperL();	
-				//Falta inicializar com as posições
+			break;
+		case 2: inicializaL();
+			break;
 	}
 }
+
+void inicializaL(){//Inicializa a matriz no inÃ­cio do programa
+    int i;
+    
+    FILE *arq;
+	int verifyArq;
+	arq = fopen("settings.txt", "r");
+	
+	verifyArq = (arq == NULL) ? 1 : 0;
+	if(verifyArq == 1) { printf("Problemas em abrir o arquivo"); return; }
+	
+	fscanf(arq, "%d", &snake.size);
+	//printf("TAMANHO SALVO: %d", snake.size); Deu certo
+	
+	sleep(2);
+    
+	snake.p = (Position*) malloc(snake.size * sizeof(Position));
+	ponteiroNulo(snake.p);
+    
+	for(i = 0; i < snake.size;i++) {
+		snake.p[i].x = snake.size - i - 1;
+		snake.p[i].y = 0;
+	}
+	clear();
+    gerarDoce();
+    insert();
+    movimentar();
+}
+
 void inicializa(){//Inicializa a matriz no inÃ­cio do programa
     int i;
 	snake.size = 3; 
@@ -182,7 +210,7 @@ void fileHelperW() { //Helper de file, para escrever as posições do doce e cobra
 	
 	arq = fopen("settings.txt", "w");  // Cria um arquivo texto para gravação
 	if (arq == NULL) {	printf("Problemas na CRIACAO do arquivo\n"); return;}
-	fprintf(arq, "Tamanho da snake: %d\n\n", snake.size);
+	fprintf(arq, "%d\n\n", snake.size);
 	for(i = 0; i < MAT; i++){
 		for(j = 0; j < MAT; j++){
 			if(mat[i][j] == '*')
@@ -195,14 +223,4 @@ void fileHelperW() { //Helper de file, para escrever as posições do doce e cobra
 	fprintf(arq, "\nVida do doce: %d\n", candy.life);
 	fprintf(arq, "Doce X e Y: %d %d\n", candy.position.x, candy.position.y);
  	fclose(arq);
-}
-
-void fileHelperL() { //Ler do arquivo... Posteriormente definir um aquivo C de helper pra manipular só o aquivo
-	FILE *arq;
-	int verifyArq;
-	arq = fopen("settings.txt", "r");
-	verifyArq = (arq == NULL) ? 1 : 0;
-	if(verifyArq == 1) { printf("Problemas em abrir o arquivo"); return; }
-	fscanf(arq, "%d %d %d %d %d",candy.position.x, candy.position.y, candy.life, *snake.p, snake.size); //Pega os valores que o arquivo contém e coloca nas variáveis
-	printf("%d %d %d",candy.position.x, candy.position.y, candy.life);
 }
