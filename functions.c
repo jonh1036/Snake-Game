@@ -7,8 +7,13 @@ Candy candy;//Variável global para o doce
 
 void gameOptions() {
 	int op;
-	printf("Welcome to the Snake Game \n Press 1 to start the new Game \n Press 2 to continue game \n");
-	scanf("%d",&op);
+	
+	do{
+		printf("Welcome to the Snake Game \n Press 1 to start the new Game \n Press 2 to continue game \n");
+		scanf("%d",&op);
+		system("cls");
+	}while(!(op == 1 || op == 2));
+	
 	switch(op) {
 		case 1: inicializa();
 			break;
