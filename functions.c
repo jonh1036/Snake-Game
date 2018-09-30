@@ -178,12 +178,22 @@ int ponteiroNulo (Position *p){//Retorna verdadeiro ou falso para a alocaÃ§Ã£o d
 
 void fileHelperW() { //Helper de file, para escrever as posições do doce e cobra respectivamente no arquivo settings
 	FILE *arq;
+	int i, j;
 	
 	arq = fopen("settings.txt", "w");  // Cria um arquivo texto para gravação
 	if (arq == NULL) {	printf("Problemas na CRIACAO do arquivo\n"); return;}
-	fprintf(arq, "%d\n", snake.size);
-	fprintf(arq, "%d\n", candy.life);
-	fprintf(arq, "%d %d\n", candy.position.x, candy.position.y);
+	fprintf(arq, "Tamanho da snake: %d\n\n", snake.size);
+	for(i = 0; i < MAT; i++){
+		for(j = 0; j < MAT; j++){
+			if(mat[i][j] == '*')
+				fprintf(arq, "%d ", j);
+			else
+				fprintf(arq, " ");
+		}
+		fprintf(arq, "\n");
+	}
+	fprintf(arq, "\nVida do doce: %d\n", candy.life);
+	fprintf(arq, "Doce X e Y: %d %d\n", candy.position.x, candy.position.y);
  	fclose(arq);
 }
 
