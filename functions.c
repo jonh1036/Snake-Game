@@ -46,6 +46,8 @@ void movimentar(){//mover
 					printf("Teclas permitidas: \nPara cima (tecla W), \nPara baixo (tecla S),\nPara a esquerda (tecla A)\nPara a direita (tecla D)\nPara sair (tecla Q)\n\n");
 					sleep(2);
 				}
+				else if(tec == 'r')
+					fileHelperW();
 				else
 					tecla = tec;
 			}
@@ -72,8 +74,8 @@ void movimentar(){//mover
 	    	    break;
             
             case 'R':
-	    	case 'r': fileHelperW();
-	    			  free(snake.p);
+	    	case 'r': //fileHelperW();
+	    			  //free(snake.p);
 	    			  break;
 	    	default:
 	    	    break;
@@ -176,10 +178,12 @@ int ponteiroNulo (Position *p){//Retorna verdadeiro ou falso para a alocaÃ§Ã£o d
 
 void fileHelperW() { //Helper de file, para escrever as posições do doce e cobra respectivamente no arquivo settings
 	FILE *arq;
+	
 	arq = fopen("settings.txt", "w");  // Cria um arquivo texto para gravação
 	if (arq == NULL) {	printf("Problemas na CRIACAO do arquivo\n"); return;}
-	fprintf(arq, "%d %d %d ",candy.position.x,candy.position.y,candy.life); //Gravando estado do doce, posição X,Y e vida do doce respectivamente
-	fprintf(arq, "%d %d",*snake.p,snake.size);
+	fprintf(arq, "%d\n", snake.size);
+	fprintf(arq, "%d\n", candy.life);
+	fprintf(arq, "%d %d\n", candy.position.x, candy.position.y);
  	fclose(arq);
 }
 
@@ -191,5 +195,4 @@ void fileHelperL() { //Ler do arquivo... Posteriormente definir um aquivo C de h
 	if(verifyArq == 1) { printf("Problemas em abrir o arquivo"); return; }
 	fscanf(arq, "%d %d %d %d %d",candy.position.x, candy.position.y, candy.life, *snake.p, snake.size); //Pega os valores que o arquivo contém e coloca nas variáveis
 	printf("%d %d %d",candy.position.x, candy.position.y, candy.life);
-	
 }
