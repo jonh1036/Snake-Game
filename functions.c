@@ -32,20 +32,34 @@ void inicializaL(){//Inicializa a matriz no in√≠cio do programa
 	verifyArq = (arq == NULL) ? 1 : 0;
 	if(verifyArq == 1) { printf("Problemas em abrir o arquivo"); return; }
 	
-	fscanf(arq, "%d", &snake.size);
-	//printf("TAMANHO SALVO: %d", snake.size); Deu certo
+	fscanf(arq, "%d", &snake.size);//Deu Certo
+	snake.p = (Position*) malloc(snake.size * sizeof(Position));
+	ponteiroNulo(snake.p);
+
+	fseek(arq, 2, SEEK_SET);
+	fscanf(arq, "%d", &snake.p[0].x);
+	printf("X: %d ", snake.p[0].x);//Deu Certo
+	
+	fseek(arq, 4, SEEK_SET);
+	fscanf(arq, "%d", &snake.p[0].y);
+	printf("Y: %d", snake.p[0].y);//Deu Certo
+
+	fseek(arq, 6, SEEK_SET);
+	fscanf(arq, "%d", &candy.life);
+	printf("\n%d", candy.life);//Deu Certo
+	
+	fseek(arq, 10, SEEK_SET);
+	fscanf(arq, "%d", &candy.position.x);
+	printf("\n%d ", candy.position.x);//Deu Certo
+	
+	fseek(arq, 12, SEEK_SET);
+	fscanf(arq, "%d", &candy.position.y);
+	printf("%d", candy.position.y);//Deu Certo
 	
 	sleep(2);
     
-	snake.p = (Position*) malloc(snake.size * sizeof(Position));
-	ponteiroNulo(snake.p);
-    
-	for(i = 0; i < snake.size;i++) {
-		snake.p[i].x = snake.size - i - 1;
-		snake.p[i].y = 0;
-	}
 	clear();
-    gerarDoce();
+	mat[candy.position.y][candy.position.x] = '$';
     insert();
     movimentar();
 }
@@ -214,7 +228,10 @@ void fileHelperW() { //Helper de file, para escrever as posiÁıes do doce e cobra
 	
 	arq = fopen("settings.txt", "w");  // Cria um arquivo texto para gravaÁ„o
 	if (arq == NULL) {	printf("Problemas na CRIACAO do arquivo\n"); return;}
-	fprintf(arq, "%d\n\n", snake.size);
+	fprintf(arq, "%d\n", snake.size);
+	fprintf(arq, "%d %d\n", snake.p[0].x, snake.p[0].y);
+	fprintf(arq, "%d\n", candy.life);
+	fprintf(arq, "%d %d\n", candy.position.x, candy.position.y);
 	for(i = 0; i < MAT; i++){
 		for(j = 0; j < MAT; j++){
 			if(mat[i][j] == '*')
@@ -224,7 +241,5 @@ void fileHelperW() { //Helper de file, para escrever as posiÁıes do doce e cobra
 		}
 		fprintf(arq, "\n");
 	}
-	fprintf(arq, "\nVida do doce: %d\n", candy.life);
-	fprintf(arq, "Doce X e Y: %d %d\n", candy.position.x, candy.position.y);
  	fclose(arq);
 }
