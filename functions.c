@@ -36,23 +36,23 @@ void inicializaL(){//Inicializa a matriz no início do programa
 	snake.p = (Position*) malloc(snake.size * sizeof(Position));
 	ponteiroNulo(snake.p);
 
-	fseek(arq, 2, SEEK_SET);
+	fseek(arq, 2, SEEK_CUR);
 	fscanf(arq, "%d", &snake.p[0].x);
 	printf("X: %d ", snake.p[0].x);//Deu Certo
 	
-	fseek(arq, 4, SEEK_SET);
+	fseek(arq, 1, SEEK_CUR);
 	fscanf(arq, "%d", &snake.p[0].y);
 	printf("Y: %d", snake.p[0].y);//Deu Certo
 
-	fseek(arq, 6, SEEK_SET);
+	fseek(arq, 1, SEEK_CUR);
 	fscanf(arq, "%d", &candy.life);
 	printf("\n%d", candy.life);//Deu Certo
 	
-	fseek(arq, 10, SEEK_SET);
+	fseek(arq, 1, SEEK_CUR);
 	fscanf(arq, "%d", &candy.position.x);
 	printf("\n%d ", candy.position.x);//Deu Certo
 	
-	fseek(arq, 12, SEEK_SET);
+	fseek(arq, 1, SEEK_CUR);
 	fscanf(arq, "%d", &candy.position.y);
 	printf("%d", candy.position.y);//Deu Certo
 	
