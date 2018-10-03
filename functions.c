@@ -23,7 +23,7 @@ void gameOptions() {
 }
 
 void inicializaL(){//Inicializa a matriz no início do programa
-    int i;
+    int i, cont = 0, a;
     
     FILE *arq;
 	int verifyArq;
@@ -36,7 +36,7 @@ void inicializaL(){//Inicializa a matriz no início do programa
 	snake.p = (Position*) malloc(snake.size * sizeof(Position));
 	ponteiroNulo(snake.p);
 
-	fseek(arq, 2, SEEK_CUR);
+	fseek(arq, 1, SEEK_CUR);
 	fscanf(arq, "%d", &snake.p[0].x);
 	printf("X: %d ", snake.p[0].x);//Deu Certo
 	
@@ -56,11 +56,21 @@ void inicializaL(){//Inicializa a matriz no início do programa
 	fscanf(arq, "%d", &candy.position.y);
 	printf("%d", candy.position.y);//Deu Certo
 	
-	sleep(2);
-    
+	system("cls");
+	
 	clear();
+	while(cont < 10){
+		for(i = 0; i < MAT; i++){
+			fseek(arq, 1, SEEK_CUR);
+			fscanf(arq, "%d", &a);
+			if(a >=0 && a<=9)
+				mat[cont][i] = '*';
+			a=-1;
+		}
+		cont++;
+	}
+	
 	mat[candy.position.y][candy.position.x] = '$';
-    insert();
     movimentar();
 }
 
@@ -82,7 +92,9 @@ void inicializa(){//Inicializa a matriz no início do programa
 
 void movimentar(){//mover
 	char tec;
+	
 	Position head = snake.p[0];
+	
 	while(1){
 		imprimir();
 		
@@ -131,12 +143,14 @@ void movimentar(){//mover
     		mat[candy.position.y][candy.position.x] = ' ';
     		gerarDoce();
 		}
+		
 		colider(head);
     	usleep(125000);//0,125 segundos de delay
     	crescer(head);
 		clear();
 		mat[candy.position.y][candy.position.x] = '$';
-		insert();
+		insert();//Se for carregado do arquivo, buga nesta fun��o
+		puts("AEEEEEE");
 		system("cls");
 	}
 }
