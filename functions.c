@@ -23,7 +23,7 @@ void gameOptions() {
 }
 
 void inicializaL(){//Inicializa a matriz no inÃ­cio do programa
-    int i;
+    int i = 1, temp, tamanhoRes;
     
     FILE *arq;
 	int verifyArq;
@@ -38,26 +38,36 @@ void inicializaL(){//Inicializa a matriz no inÃ­cio do programa
 
 	fseek(arq, 2, SEEK_CUR);
 	fscanf(arq, "%d", &snake.p[0].x);
-	printf("X: %d ", snake.p[0].x);//Deu Certo
+	//printf("X: %d ", snake.p[0].x);//Deu Certo
 	
 	fseek(arq, 1, SEEK_CUR);
 	fscanf(arq, "%d", &snake.p[0].y);
-	printf("Y: %d", snake.p[0].y);//Deu Certo
+	//printf("Y: %d", snake.p[0].y);//Deu Certo
 
 	fseek(arq, 1, SEEK_CUR);
 	fscanf(arq, "%d", &candy.life);
-	printf("\n%d", candy.life);//Deu Certo
+	//printf("\n%d", candy.life);//Deu Certo
 	
 	fseek(arq, 1, SEEK_CUR);
 	fscanf(arq, "%d", &candy.position.x);
-	printf("\n%d ", candy.position.x);//Deu Certo
+	//printf("\n%d ", candy.position.x);//Deu Certo
 	
 	fseek(arq, 1, SEEK_CUR);
 	fscanf(arq, "%d", &candy.position.y);
-	printf("%d", candy.position.y);//Deu Certo
+	//printf("%d", candy.position.y);//Deu Certo
 	
-	sleep(2);
-    
+	tamanhoRes = snake.size - 1;
+	while(tamanhoRes > 0){
+		fseek(arq, 1, SEEK_CUR);
+		fscanf(arq, "%d", &temp);
+		//printf("A: %d\n", temp);
+		if(temp >= 0){
+			snake.p[i].x = temp % 10;
+			snake.p[i].y = temp / 10;
+			i++;
+			tamanhoRes--;
+		}
+	}
 	clear();
 	mat[candy.position.y][candy.position.x] = '$';
     insert();
@@ -78,6 +88,9 @@ void inicializa(){//Inicializa a matriz no inÃ­cio do programa
     gerarDoce();
     insert();
     movimentar();
+    imprimir();
+    puts("O jogo começará em 2 segundos!");
+    sleep(2);
 }
 
 void movimentar(){//mover
@@ -239,10 +252,17 @@ void fileHelperW() { //Helper de file, para escrever as posições do doce e cobra
 	fprintf(arq, "%d %d\n", candy.position.x, candy.position.y);
 	for(i = 0; i < MAT; i++){
 		for(j = 0; j < MAT; j++){
-			if(mat[i][j] == '*')
-				fprintf(arq, "%d ", j);
+			if(mat[i][j] == '*'){
+				if(snake.p[0].x == j && snake.p[0].y == i)
+					fprintf(arq, "-%d%d ", i,j);	
+				else
+					fprintf(arq, "%d%d ", i,j);	
+			}
 			else
-				fprintf(arq, " ");
+				if(i ==0 && j == 0)
+					fprintf(arq, "-100 ");	
+				else
+					fprintf(arq, "-%d%d ", i,j);
 		}
 		fprintf(arq, "\n");
 	}
