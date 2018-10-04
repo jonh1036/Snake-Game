@@ -23,7 +23,7 @@ void gameOptions() {
 }
 
 void inicializaL(){//Inicializa a matriz no in√≠cio do programa
-    int i, cont = 0, a;
+    int i;
     
     FILE *arq;
 	int verifyArq;
@@ -35,6 +35,14 @@ void inicializaL(){//Inicializa a matriz no in√≠cio do programa
 	fscanf(arq, "%d", &snake.size);//Deu Certo
 	snake.p = (Position*) malloc(snake.size * sizeof(Position));
 	ponteiroNulo(snake.p);
+
+	fseek(arq, 2, SEEK_CUR);
+	fscanf(arq, "%d", &snake.p[0].x);
+	printf("X: %d ", snake.p[0].x);//Deu Certo
+	
+	fseek(arq, 1, SEEK_CUR);
+	fscanf(arq, "%d", &snake.p[0].y);
+	printf("Y: %d", snake.p[0].y);//Deu Certo
 
 	fseek(arq, 1, SEEK_CUR);
 	fscanf(arq, "%d", &candy.life);
@@ -48,23 +56,11 @@ void inicializaL(){//Inicializa a matriz no in√≠cio do programa
 	fscanf(arq, "%d", &candy.position.y);
 	printf("%d", candy.position.y);//Deu Certo
 	
-	fseek(arq, 1, SEEK_CUR);
-	fscanf(arq, "%d", &snake.p[0].x);
-	printf("X: %d ", snake.p[0].x);//Deu Certo
-	
-	fseek(arq, 1, SEEK_CUR);
-	fscanf(arq, "%d", &snake.p[0].y);
-	printf("Y: %d", snake.p[0].y);//Deu Certo
-	system("cls");
-	
+	sleep(2);
+    
 	clear();
-	
-	for(i = 1; i < snake.size; i++){//LaÁo para pegar a quantidade certa de '*' que faltam
-		
-	}
-	
 	mat[candy.position.y][candy.position.x] = '$';
-	insert();
+    insert();
     movimentar();
 }
 
@@ -86,9 +82,7 @@ void inicializa(){//Inicializa a matriz no in√≠cio do programa
 
 void movimentar(){//mover
 	char tec;
-	
 	Position head = snake.p[0];
-	
 	while(1){
 		imprimir();
 		
@@ -99,11 +93,16 @@ void movimentar(){//mover
 					printf("Teclas permitidas: \nPara cima (tecla W), \nPara baixo (tecla S),\nPara a esquerda (tecla A)\nPara a direita (tecla D)\nPara sair (tecla Q)\n\n");
 					sleep(2);
 				}
-				else if(tec == 'r')
-					fileHelperW();
+				else if(tec == 'r' || tec == 'R'){}
 				else
 					tecla = tec;
 			}
+		}
+		
+		switch(tec){
+			case 'r':
+			case 'R':	fileHelperW();
+				break;
 		}
 		switch(tecla){
             case 'A':
@@ -137,14 +136,12 @@ void movimentar(){//mover
     		mat[candy.position.y][candy.position.x] = ' ';
     		gerarDoce();
 		}
-		
 		colider(head);
     	usleep(125000);//0,125 segundos de delay
     	crescer(head);
 		clear();
 		mat[candy.position.y][candy.position.x] = '$';
-		insert();//Se for carregado do arquivo, buga nesta funÁ„o
-		puts("AEEEEEE");
+		insert();
 		system("cls");
 	}
 }
@@ -237,9 +234,9 @@ void fileHelperW() { //Helper de file, para escrever as posiÁıes do doce e cobra
 	arq = fopen("settings.txt", "w");  // Cria um arquivo texto para gravaÁ„o
 	if (arq == NULL) {	printf("Problemas na CRIACAO do arquivo\n"); return;}
 	fprintf(arq, "%d\n", snake.size);
+	fprintf(arq, "%d %d\n", snake.p[0].x, snake.p[0].y);
 	fprintf(arq, "%d\n", candy.life);
 	fprintf(arq, "%d %d\n", candy.position.x, candy.position.y);
-	fprintf(arq, "%d %d\n", snake.p[0].x, snake.p[0].y);
 	for(i = 0; i < MAT; i++){
 		for(j = 0; j < MAT; j++){
 			if(mat[i][j] == '*')
