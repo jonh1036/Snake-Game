@@ -114,7 +114,7 @@ void movimentar(){//mover
 		
 		switch(tec){
 			case 'r':
-			case 'R':	fileHelperW();
+			case 'R':	fileHelperW(tecla);
 				break;
 		}
 		switch(tecla){
@@ -240,7 +240,7 @@ int ponteiroNulo (Position *p){//Retorna verdadeiro ou falso para a alocaÃ§Ã£o d
 	return 0;
 }
 
-void fileHelperW() { //Helper de file, para escrever as posições do doce e cobra respectivamente no arquivo settings
+void fileHelperW(char tec) { //Helper de file, para escrever as posições do doce e cobra respectivamente no arquivo settings
 	FILE *arq;
 	int i, j;
 	
@@ -264,7 +264,9 @@ void fileHelperW() { //Helper de file, para escrever as posições do doce e cobra
 				else
 					fprintf(arq, "-%d%d ", i,j);
 		}
+		fprintf(tec);
 		fprintf(arq, "\n");
+		
 	}
  	fclose(arq);
 }
