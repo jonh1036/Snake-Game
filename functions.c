@@ -23,7 +23,8 @@ void gameOptions() {
 }
 
 void inicializaL(){//Inicializa a matriz no inÃ­cio do programa
-    int i = 1, temp, tamanhoRes;
+    int i = 1, tamanhoRes;
+    char temp;
     
     FILE *arq;
 	int verifyArq;
@@ -32,37 +33,29 @@ void inicializaL(){//Inicializa a matriz no inÃ­cio do programa
 	verifyArq = (arq == NULL) ? 1 : 0;
 	if(verifyArq == 1) { printf("Problemas em abrir o arquivo"); return; }
 	
-	fscanf(arq, "%d", &snake.size);//Deu Certo
+	fscanf(arq, "%d", &snake.size);
 	snake.p = (Position*) malloc(snake.size * sizeof(Position));
 	ponteiroNulo(snake.p);
 
 	fseek(arq, 2, SEEK_CUR);
 	fscanf(arq, "%d", &snake.p[0].x);
-	//printf("X: %d ", snake.p[0].x);//Deu Certo
 	
 	fseek(arq, 1, SEEK_CUR);
 	fscanf(arq, "%d", &snake.p[0].y);
-	//printf("Y: %d", snake.p[0].y);//Deu Certo
 
 	fseek(arq, 1, SEEK_CUR);
 	fscanf(arq, "%d", &candy.life);
-	//printf("\n%d", candy.life);//Deu Certo
 	
 	fseek(arq, 1, SEEK_CUR);
 	fscanf(arq, "%d", &candy.position.x);
-	//printf("\n%d ", candy.position.x);//Deu Certo
 	
 	fseek(arq, 1, SEEK_CUR);
 	fscanf(arq, "%d", &candy.position.y);
-	//printf("%d", candy.position.y);//Deu Certo
-	
-
 	
 	tamanhoRes = snake.size - 1;
 	while(tamanhoRes > 0){
 		fseek(arq, 1, SEEK_CUR);
 		fscanf(arq, "%d", &temp);
-		//printf("A: %d\n", temp);
 		if(temp >= 0){
 			snake.p[i].x = temp % 10;
 			snake.p[i].y = temp / 10;
@@ -70,17 +63,17 @@ void inicializaL(){//Inicializa a matriz no inÃ­cio do programa
 			tamanhoRes--;
 		}
 	}
-	
-	char na;
-	fseek(arq, 1, SEEK_END);
-	fscanf(arq,"%c",&na);
-	printf("%c",na);
 
+	fseek(arq, -1, SEEK_END);
+	fscanf(arq,"%c",&tecla);
 	
 	fclose(arq);
 	clear();
 	mat[candy.position.y][candy.position.x] = '$';
     insert();
+    imprimir();
+    sleep(1);
+    system("cls");
     movimentar();
 }
 
@@ -98,9 +91,6 @@ void inicializa(){//Inicializa a matriz no inÃ­cio do programa
     gerarDoce();
     insert();
     movimentar();
-    imprimir();
-    puts("O jogo começará em 2 segundos!");
-    sleep(2);
 }
 
 void movimentar(){//mover
@@ -160,7 +150,7 @@ void movimentar(){//mover
     		gerarDoce();
 		}
 		colider(head);
-    	usleep(125000);//0,125 segundos de delay
+    	usleep(225000);//0,225 segundos de delay
     	crescer(head);
 		clear();
 		mat[candy.position.y][candy.position.x] = '$';
@@ -250,7 +240,7 @@ int ponteiroNulo (Position *p){//Retorna verdadeiro ou falso para a alocaÃ§Ã£o d
 	return 0;
 }
 
-void fileHelperW(char tecla) { //Helper de file, para escrever as posições do doce e cobra respectivamente no arquivo settings
+void fileHelperW() { //Helper de file, para escrever as posições do doce e cobra respectivamente no arquivo settings
 	FILE *arq;
 	int i, j;
 	
@@ -276,6 +266,6 @@ void fileHelperW(char tecla) { //Helper de file, para escrever as posições do do
 		}
 		fprintf(arq, "\n");
 	}
-	fputc(tecla,arq);
+	fprintf(arq, "%c", tecla);
  	fclose(arq);
 }

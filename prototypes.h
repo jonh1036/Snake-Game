@@ -26,4 +26,4 @@ void inicializaL();
 void insert();
 void movimentar();
 int ponteiroNulo(Position *p);
-void fileHelperW(char tecla);
+void fileHelperW();
