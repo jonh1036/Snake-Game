@@ -23,7 +23,7 @@ void gameOptions() {
 }
 
 void inicializaL(){//Inicializa a matriz no início do programa
-    int i = 1, tamanhoRes;
+    int i = 1, tamanhoRes, temp;
     
     FILE *arq;
 	int verifyArq;
@@ -101,7 +101,7 @@ void movimentar(){//mover
 		if (kbhit()){
 			tec = getch();
 			if((tecla=='a' && tec != 'd') || (tecla=='d' && tec != 'a') || (tecla=='w' && tec != 's') || (tecla=='s' && tec != 'w') || (tec == 'q')){
-				if(tec != 'w' && tec != 's' && tec != 'd' && tec != 'a' && tec != 'q' && tec != 'r'){
+				if((tec != 'w' && tec != 's' && tec != 'd' && tec != 'a' && tec != 'q' && tec != 'r') && (tec != 'W' && tec != 'S' && tec != 'D' && tec != 'A' && tec != 'Q' && tec != 'R')){
 					printf("Teclas permitidas: \nPara cima (tecla W), \nPara baixo (tecla S),\nPara a esquerda (tecla A)\nPara a direita (tecla D)\nPara sair (tecla Q)\n\n");
 					sleep(2);
 				}
