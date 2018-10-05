@@ -24,7 +24,6 @@ void gameOptions() {
 
 void inicializaL(){//Inicializa a matriz no inÃ­cio do programa
     int i = 1, tamanhoRes;
-    char temp;
     
     FILE *arq;
 	int verifyArq;
@@ -246,6 +245,7 @@ void fileHelperW() { //Helper de file, para escrever as posições do doce e cobra
 	
 	arq = fopen("settings.txt", "w");  // Cria um arquivo texto para gravação
 	if (arq == NULL) {	printf("Problemas na CRIACAO do arquivo\n"); return;}
+	
 	fprintf(arq, "%d\n", snake.size);
 	fprintf(arq, "%d %d\n", snake.p[0].x, snake.p[0].y);
 	fprintf(arq, "%d\n", candy.life);
