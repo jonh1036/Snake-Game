@@ -56,6 +56,8 @@ void inicializaL(){//Inicializa a matriz no inÃ­cio do programa
 	fscanf(arq, "%d", &candy.position.y);
 	//printf("%d", candy.position.y);//Deu Certo
 	
+
+	
 	tamanhoRes = snake.size - 1;
 	while(tamanhoRes > 0){
 		fseek(arq, 1, SEEK_CUR);
@@ -68,6 +70,14 @@ void inicializaL(){//Inicializa a matriz no inÃ­cio do programa
 			tamanhoRes--;
 		}
 	}
+	
+	char na;
+	fseek(arq, 1, SEEK_END);
+	fscanf(arq,"%c",&na);
+	printf("%c",na);
+
+	
+	fclose(arq);
 	clear();
 	mat[candy.position.y][candy.position.x] = '$';
     insert();
@@ -240,7 +250,7 @@ int ponteiroNulo (Position *p){//Retorna verdadeiro ou falso para a alocaÃ§Ã£o d
 	return 0;
 }
 
-void fileHelperW(char tec) { //Helper de file, para escrever as posições do doce e cobra respectivamente no arquivo settings
+void fileHelperW(char tecla) { //Helper de file, para escrever as posições do doce e cobra respectivamente no arquivo settings
 	FILE *arq;
 	int i, j;
 	
@@ -264,9 +274,8 @@ void fileHelperW(char tec) { //Helper de file, para escrever as posições do doce
 				else
 					fprintf(arq, "-%d%d ", i,j);
 		}
-		fprintf(tec);
 		fprintf(arq, "\n");
-		
 	}
+	fputc(tecla,arq);
  	fclose(arq);
 }
