@@ -22,6 +22,8 @@ void colider(Position head);
 void gerarDoce();
 void imprimir();
 void inicializa();
+void inicializaL();
 void insert();
 void movimentar();
 int ponteiroNulo(Position *p);
+void fileHelperW();
